@@ -16,6 +16,8 @@ def test_agent_tool_specs_include_required_challenge_tools():
         "account_fraud_neighborhood",
         "fraud_type_comparison",
         "fraud_concentration",
+        "risk_indicator_overview",
+        "shared_risk_indicator_context",
     }.issubset(names)
     assert "Similar fraud case search" in names
 

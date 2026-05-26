@@ -16,6 +16,9 @@ CONSTRAINTS = (
     "CREATE CONSTRAINT transaction_id IF NOT EXISTS FOR (t:Transaction) REQUIRE t.transactionId IS UNIQUE",
     "CREATE CONSTRAINT transaction_type_name IF NOT EXISTS FOR (t:TransactionType) REQUIRE t.name IS UNIQUE",
     "CREATE CONSTRAINT fraud_label_name IF NOT EXISTS FOR (l:FraudLabel) REQUIRE l.name IS UNIQUE",
+    "CREATE CONSTRAINT risk_indicator_name IF NOT EXISTS FOR (r:RiskIndicator) REQUIRE r.name IS UNIQUE",
+    "CREATE CONSTRAINT email_sample_id IF NOT EXISTS FOR (e:EmailSample) REQUIRE e.emailId IS UNIQUE",
+    "CREATE CONSTRAINT url_sample_id IF NOT EXISTS FOR (u:URLSample) REQUIRE u.urlId IS UNIQUE",
 )
 
 ACCOUNT_IMPORT_CYPHER = """
@@ -54,6 +57,49 @@ MERGE (origin)-[:SENT]->(tx)
 MERGE (tx)-[:TO]->(destination)
 MERGE (tx)-[:HAS_TYPE]->(kind)
 MERGE (tx)-[:HAS_LABEL]->(label)
+"""
+
+RISK_INDICATOR_IMPORT_CYPHER = """
+UNWIND $rows AS row
+MERGE (indicator:RiskIndicator {name: row.name})
+SET indicator.description = row.description
+"""
+
+EMAIL_SAMPLE_IMPORT_CYPHER = """
+UNWIND $rows AS row
+MERGE (email:EmailSample {emailId: row.emailId})
+SET email.subject = row.subject,
+    email.sender = row.sender,
+    email.label = row.label
+"""
+
+URL_SAMPLE_IMPORT_CYPHER = """
+UNWIND $rows AS row
+MERGE (url:URLSample {urlId: row.urlId})
+SET url.url = row.url,
+    url.domain = row.domain,
+    url.label = row.label
+"""
+
+EMAIL_RISK_IMPORT_CYPHER = """
+UNWIND $rows AS row
+MATCH (email:EmailSample {emailId: row.emailId})
+MATCH (indicator:RiskIndicator {name: row.indicator})
+MERGE (email)-[:HAS_RISK_INDICATOR]->(indicator)
+"""
+
+URL_RISK_IMPORT_CYPHER = """
+UNWIND $rows AS row
+MATCH (url:URLSample {urlId: row.urlId})
+MATCH (indicator:RiskIndicator {name: row.indicator})
+MERGE (url)-[:HAS_RISK_INDICATOR]->(indicator)
+"""
+
+TRANSACTION_RISK_IMPORT_CYPHER = """
+UNWIND $rows AS row
+MATCH (tx:Transaction {transactionId: row.transactionId})
+MATCH (indicator:RiskIndicator {name: row.indicator})
+MERGE (tx)-[:HAS_RISK_INDICATOR]->(indicator)
 """
 
 
@@ -104,13 +150,29 @@ def import_bundle(driver, config: Neo4jConfig, bundle_dir: Path | str, *, batch_
                 session.execute_write(run_write_batch, cypher, batch)
 
 
+def import_risk_bundle(driver, config: Neo4jConfig, bundle_dir: Path | str, *, batch_size: int = 1_000) -> None:
+    bundle = Path(bundle_dir)
+    with driver.session(database=config.database) as session:
+        create_constraints(session)
+        for filename, cypher in (
+            ("risk_indicators.csv", RISK_INDICATOR_IMPORT_CYPHER),
+            ("email_samples.csv", EMAIL_SAMPLE_IMPORT_CYPHER),
+            ("url_samples.csv", URL_SAMPLE_IMPORT_CYPHER),
+            ("email_risk_relationships.csv", EMAIL_RISK_IMPORT_CYPHER),
+            ("url_risk_relationships.csv", URL_RISK_IMPORT_CYPHER),
+            ("transaction_risk_relationships.csv", TRANSACTION_RISK_IMPORT_CYPHER),
+        ):
+            for batch in chunk_rows(read_csv_rows(bundle / filename), size=batch_size):
+                session.execute_write(run_write_batch, cypher, batch)
+
+
 def build_count_verification_query() -> str:
     return """
 MATCH (n)
-WHERE n:Account OR n:Transaction OR n:TransactionType OR n:FraudLabel
+WHERE n:Account OR n:Transaction OR n:TransactionType OR n:FraudLabel OR n:RiskIndicator OR n:EmailSample OR n:URLSample
 WITH count(n) AS nodes
 MATCH ()-[r]->()
-WHERE type(r) IN ['SENT', 'TO', 'HAS_TYPE', 'HAS_LABEL']
+WHERE type(r) IN ['SENT', 'TO', 'HAS_TYPE', 'HAS_LABEL', 'HAS_RISK_INDICATOR']
 WITH nodes, count(r) AS relationships
 MATCH (tx:Transaction)
 WITH nodes, relationships, count(tx) AS transactions, sum(CASE WHEN tx.isFraud THEN 1 ELSE 0 END) AS fraudTransactions

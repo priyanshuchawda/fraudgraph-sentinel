@@ -13,6 +13,7 @@ from fraudgraph_sentinel.aura_config import (
 from fraudgraph_sentinel.aura_import import (
     get_driver,
     import_bundle,
+    import_risk_bundle,
     inspect_labels,
     run_core_query_checks,
     smoke_test,
@@ -30,6 +31,9 @@ def build_parser() -> argparse.ArgumentParser:
     import_parser = subparsers.add_parser("import")
     import_parser.add_argument("--bundle", default=Path("outputs/fraudgraph_sentinel"), type=Path)
     import_parser.add_argument("--batch-size", default=1_000, type=int)
+    risk_parser = subparsers.add_parser("import-risk")
+    risk_parser.add_argument("--bundle", default=Path("outputs/fraudgraph_sentinel_risk"), type=Path)
+    risk_parser.add_argument("--batch-size", default=1_000, type=int)
     subparsers.add_parser("inspect")
     subparsers.add_parser("query-check")
     subparsers.add_parser("verify")
@@ -65,6 +69,10 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "import":
             import_bundle(driver, config, args.bundle, batch_size=args.batch_size)
+            print(json.dumps(verify_graph_counts(driver, config), indent=2, default=str))
+            return 0
+        if args.command == "import-risk":
+            import_risk_bundle(driver, config, args.bundle, batch_size=args.batch_size)
             print(json.dumps(verify_graph_counts(driver, config), indent=2, default=str))
             return 0
         if args.command == "verify":

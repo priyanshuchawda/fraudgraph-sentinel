@@ -37,7 +37,7 @@ graph LR
 
 ## Verified Graph Statistics
 
-Generated compact bundle and live AuraDB import:
+Base compact transaction graph:
 
 | Metric | Count |
 |---|---:|
@@ -49,11 +49,24 @@ Generated compact bundle and live AuraDB import:
 | Total relationships | 52,852 |
 | Fraud transactions | 8,213 |
 
+Optional risk-indicator enhancement imported into AuraDB:
+
+| Metric | Count |
+|---|---:|
+| Email samples | 800 |
+| URL samples | 400 |
+| Risk indicators | 12 |
+| Additional relationships | 21,410 |
+| Enhanced total nodes | 38,797 |
+| Enhanced total relationships | 74,262 |
+
 Free-tier safety target:
 
 - node limit target: **50,000**
 - relationship limit target: **175,000**
 - current status: **safe**
+
+The optional enhancement links separate email, URL, and transaction samples through shared risk indicators. It does **not** claim that any phishing email caused any transaction.
 
 ## Agent Tools
 
@@ -70,10 +83,10 @@ Prepared Cypher Template tools:
 - `account_fraud_neighborhood`
 - `fraud_type_comparison`
 - `fraud_concentration`
+- `risk_indicator_overview`
+- `shared_risk_indicator_context`
 
-Optional:
-
-- Similarity Search over `Transaction.riskText` can be added later if embeddings are configured. It is not required for the zero-cost submission path.
+Similarity Search over `Transaction.riskText` can be added later if embeddings are configured. It is not required for the zero-cost submission path.
 
 ## Demo Questions
 
@@ -140,6 +153,21 @@ Import the compact bundle into an existing AuraDB Free database:
 $env:PYTHONPATH = "$PWD\src"
 python -m fraudgraph_sentinel.aura_cli --env-file .env import `
   --bundle ".\outputs\fraudgraph_sentinel" `
+  --batch-size 1000
+```
+
+Build and import the optional risk-indicator enhancement:
+
+```powershell
+$env:PYTHONPATH = "$PWD\src"
+python -m fraudgraph_sentinel.risk_cli `
+  --email-xlsx ".\datasets\cyber_security_fraud_phishing\phishing_dataset (1).xlsx" `
+  --url-csv ".\datasets\cyber_security_fraud_phishing\PhiUSIIL_Phishing_URL_Dataset.csv" `
+  --transactions-csv ".\outputs\fraudgraph_sentinel\transactions.csv" `
+  --output ".\outputs\fraudgraph_sentinel_risk"
+
+python -m fraudgraph_sentinel.aura_cli --env-file .env import-risk `
+  --bundle ".\outputs\fraudgraph_sentinel_risk" `
   --batch-size 1000
 ```
 

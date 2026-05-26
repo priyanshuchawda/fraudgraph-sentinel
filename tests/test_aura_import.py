@@ -1,5 +1,6 @@
 from fraudgraph_sentinel.aura_import import (
     ACCOUNT_IMPORT_CYPHER,
+    RISK_INDICATOR_IMPORT_CYPHER,
     TRANSACTION_IMPORT_CYPHER,
     build_count_verification_query,
     chunk_rows,
@@ -11,6 +12,11 @@ def test_import_queries_are_parameterized_unwind_queries():
     assert "UNWIND $rows AS row" in TRANSACTION_IMPORT_CYPHER
     assert "LOAD CSV" not in TRANSACTION_IMPORT_CYPHER
     assert "MERGE (origin)-[:SENT]->(tx)" in TRANSACTION_IMPORT_CYPHER
+
+
+def test_risk_indicator_import_uses_parameterized_unwind():
+    assert "UNWIND $rows AS row" in RISK_INDICATOR_IMPORT_CYPHER
+    assert "MERGE (indicator:RiskIndicator" in RISK_INDICATOR_IMPORT_CYPHER
 
 
 def test_chunk_rows_batches_iterables():
@@ -25,3 +31,4 @@ def test_count_verification_query_is_read_only():
     assert "MATCH" in query
     assert "CREATE" not in query
     assert "DELETE" not in query
+    assert "RiskIndicator" in query

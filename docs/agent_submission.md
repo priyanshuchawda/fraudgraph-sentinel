@@ -47,13 +47,22 @@ Optional future tool:
 
 ## Verified AuraDB Import
 
-Live AuraDB verification:
+Base AuraDB verification:
 
 - Nodes: **37,585**
 - Relationships: **52,852**
 - Transactions: **13,213**
 - Fraud transactions: **8,213**
 - Free-tier safety: **pass**
+
+Optional ScamChain-style risk-indicator enhancement:
+
+- Email samples: **800**
+- URL samples: **400**
+- Risk indicators: **12**
+- Enhanced nodes: **38,797**
+- Enhanced relationships: **74,262**
+- Causality claim: **false**. The datasets are linked only through shared risk indicators, not real attack-chain causality.
 
 Validated queries:
 
@@ -63,6 +72,8 @@ Validated queries:
 - account fraud neighborhood
 - fraud type comparison
 - fraud concentration
+- risk indicator overview
+- shared risk indicator context
 
 ## GitHub Repository
 

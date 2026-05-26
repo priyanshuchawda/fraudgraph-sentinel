@@ -23,6 +23,7 @@ Verified stats to mention:
 - 13,213 transactions
 - 8,213 fraud transactions
 - safely under the AuraDB Free target
+- optional risk layer: 800 email samples, 400 URL samples, and 12 shared risk indicators
 
 ## 3. Ask A Relationship-Based Question
 
@@ -67,6 +68,18 @@ The agent should compare fraud counts, source accounts, destination accounts, to
 ```
 
 ## 6. Close
+
+Optional risk-layer question:
+
+```text
+Where does PaymentKeywordSignal appear in the graph?
+```
+
+Expected response:
+
+```text
+The agent should show separate synthetic URLs, emails, or transactions linked by a shared risk indicator without claiming causality.
+```
 
 ```text
 The submission demonstrates a low-cost AuraDB Free graph agent that reasons over fraud context, not just row-level labels. It uses Cypher Templates for trusted investigation paths and Text2Cypher for safe read-only exploration.

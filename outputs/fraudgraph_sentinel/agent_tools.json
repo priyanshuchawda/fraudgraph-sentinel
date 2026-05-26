@@ -92,6 +92,37 @@
     "expected_output": "Destination accounts ranked by total fraud amount."
   },
   {
+    "name": "risk_indicator_overview",
+    "type": "cypher_template",
+    "description": "Summarize optional risk indicators across transactions, email samples, and URL samples.",
+    "parameters": {
+      "limit": 20
+    },
+    "cypher": "MATCH (item)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator)\nWITH indicator, labels(item) AS labels\nUNWIND labels AS label\nRETURN indicator.name AS riskIndicator,\n       label AS sampleType,\n       count(*) AS linkedItems\nORDER BY riskIndicator ASC, linkedItems DESC\nLIMIT $limit",
+    "example_questions": [
+      "Summarize the risk indicators across the cyber graph.",
+      "Which risk indicators appear across transactions, emails, and URLs?",
+      "Show optional ScamChain risk indicator coverage."
+    ],
+    "expected_output": "Risk indicators grouped by linked graph entity label."
+  },
+  {
+    "name": "shared_risk_indicator_context",
+    "type": "cypher_template",
+    "description": "Show how one risk indicator appears across separate synthetic datasets without claiming causality.",
+    "parameters": {
+      "indicator": "PaymentKeywordSignal",
+      "limit": 10
+    },
+    "cypher": "MATCH (item)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator {name: $indicator})\nRETURN indicator.name AS riskIndicator,\n       labels(item) AS itemLabels,\n       coalesce(item.transactionId, item.emailId, item.urlId) AS itemId,\n       coalesce(item.riskText, item.subject, item.domain) AS context\nLIMIT $limit",
+    "example_questions": [
+      "Where does PaymentKeywordSignal appear in the graph?",
+      "Show shared risk context across datasets.",
+      "Which graph entities share this risk indicator?"
+    ],
+    "expected_output": "Separate synthetic graph entities connected to a chosen risk indicator."
+  },
+  {
     "name": "natural_language_graph_questions",
     "type": "text2cypher",
     "description": "Read-only flexible fallback for ad-hoc graph questions not covered by templates.",
