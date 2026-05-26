@@ -107,6 +107,13 @@ Run tests:
 pytest -q
 ```
 
+Run the compact validation suite:
+
+```powershell
+$env:PYTHONPATH = "$PWD\src"
+python -m fraudgraph_sentinel.validation_runner
+```
+
 Generate the compact graph bundle:
 
 ```powershell
