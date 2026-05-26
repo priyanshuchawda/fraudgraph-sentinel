@@ -6,42 +6,77 @@ FraudGraph Sentinel
 
 ## What It Does
 
-FraudGraph Sentinel is a graph-backed AI investigation agent for synthetic mobile-money fraud. It answers questions about suspicious account movement, repeated fraud destinations, high-value fraud transfers, fraud labels, and transaction-type patterns.
+FraudGraph Sentinel is a graph-backed cyber-fraud investigation assistant for a synthetic mobile-money dataset. It helps analysts reason over suspicious transaction paths, repeated fraudulent destinations, high-value fraud movements, fraud-type patterns, and account neighborhoods.
 
-Example questions:
-
-- Which destination accounts receive repeated fraud transfers?
-- Which transaction type has the highest fraud rate?
-- Explain the suspicious neighborhood around account `C840083671`.
-- Find similar fraud cases where the sender balance was drained.
+It grounds answers in Neo4j graph results and explains why a pattern is suspicious without claiming real-world criminal activity.
 
 ## Dataset And Why A Graph Fits
 
 Dataset: `Synthetic_Financial_datasets_log.csv`
 
-The source file contains 6,362,620 transaction rows with origin accounts, destination accounts, transaction types, amounts, balances, and fraud labels. A graph fits because fraud is relational: suspicious behavior is often visible through repeated destinations, shared accounts, transaction paths, and multi-hop account neighborhoods rather than isolated rows.
+The source dataset contains **6,362,620** synthetic transaction rows with origin accounts, destination accounts, transaction type, amount, account balances, and fraud labels.
 
-The Aura Free build uses all 8,213 fraud rows and a bounded non-fraud sample so the graph stays small while preserving the most important investigation signal.
+A graph fits because fraud is relational. Repeated recipients, shared counterparties, source-to-transaction-to-destination paths, and fraud concentration are easier to inspect as connected entities than as isolated table rows.
 
-## Graph Model
+The AuraDB Free build uses:
+
+- all **8,213** fraud rows
+- **5,000** deterministic non-fraud sample rows
+- **37,585** total nodes
+- **52,852** total relationships
+
+This stays below the conservative project safety target of **50,000 nodes** and **175,000 relationships**.
+
+## Tools Used
+
+- Cypher Template
+- Text2Cypher
+
+Prepared Cypher Template tools:
+
+- `fraud_overview`
+- `repeated_fraud_destinations`
+- `high_value_fraud_paths`
+- `account_fraud_neighborhood`
+- `fraud_type_comparison`
+- `fraud_concentration`
+
+Optional future tool:
+
+- Similarity Search over `Transaction.riskText` if embeddings are enabled.
+
+## Verified AuraDB Import
+
+Live AuraDB verification:
+
+- Nodes: **37,585**
+- Relationships: **52,852**
+- Transactions: **13,213**
+- Fraud transactions: **8,213**
+- Free-tier safety: **pass**
+
+Validated queries:
+
+- fraud overview
+- repeated fraudulent destinations
+- high-value fraud paths
+- account fraud neighborhood
+- fraud type comparison
+- fraud concentration
+
+## GitHub Repository
+
+https://github.com/priyanshuchawda/fraudgraph-sentinel
+
+## Screenshots To Add
+
+1. Aura Console graph screenshot showing `Account`, `Transaction`, `TransactionType`, and `FraudLabel` nodes.
+2. Aura Agent response screenshot for:
 
 ```text
-(:Account)-[:SENT]->(:Transaction)-[:TO]->(:Account)
-(:Transaction)-[:HAS_TYPE]->(:TransactionType)
-(:Transaction)-[:HAS_LABEL]->(:FraudLabel)
+Which destination accounts received multiple fraudulent transfers?
 ```
 
-## Tool Coverage
+## Optional Agent Link
 
-- Cypher Template: repeated fraud destinations and account neighborhood investigation.
-- Text2Cypher: flexible natural-language questions over the graph schema.
-- Optional Similarity Search: similar fraud case lookup over `Transaction.riskText` if embeddings are enabled.
-
-## Screenshots To Capture
-
-1. Aura console graph visualization showing `Account`, `Transaction`, `TransactionType`, and `FraudLabel` nodes.
-2. Aura Agent answering: `Find destination accounts connected to repeated fraud transfers and explain the pattern.`
-
-## Optional Link
-
-Not published yet. The current build is Aura Agent-ready and can be published after the Aura console import is complete.
+Not published. Aura Console demo is sufficient for the free-path submission unless public publishing is separately approved after checking pricing or credits.
