@@ -1,36 +1,108 @@
 [
   {
-    "name": "Find repeated fraud destinations",
+    "name": "fraud_overview",
     "type": "cypher_template",
-    "description": "Find destination accounts receiving multiple fraudulent transactions.",
+    "description": "Summarize fraud count, amount, and transaction-type breakdown.",
+    "parameters": {
+      "limit": 10
+    },
+    "cypher": "MATCH (tx:Transaction {isFraud: true})-[:HAS_TYPE]->(kind:TransactionType)\nRETURN kind.name AS transactionType,\n       count(tx) AS fraudTransactions,\n       round(sum(tx.amount), 2) AS totalFraudAmount,\n       round(avg(tx.amount), 2) AS averageFraudAmount\nORDER BY fraudTransactions DESC\nLIMIT $limit",
+    "example_questions": [
+      "What is the fraud overview?",
+      "Which transaction types account for fraud?",
+      "Summarize fraud amount by type."
+    ],
+    "expected_output": "Fraud transaction counts and amounts grouped by type."
+  },
+  {
+    "name": "repeated_fraud_destinations",
+    "type": "cypher_template",
+    "description": "Find destination accounts receiving repeated fraudulent transactions.",
     "parameters": {
       "minFraudTransactions": 2,
       "limit": 10
     },
-    "cypher": "MATCH (origin:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account) WITH dest, count(tx) AS fraudCount, sum(tx.amount) AS fraudAmount, collect(origin.accountId)[0..5] AS sampleOrigins WHERE fraudCount >= $minFraudTransactions RETURN dest.accountId AS destination, fraudCount, fraudAmount, sampleOrigins ORDER BY fraudCount DESC, fraudAmount DESC LIMIT $limit"
+    "cypher": "MATCH (origin:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account)\nWITH dest, count(tx) AS fraudTransactions, sum(tx.amount) AS totalFraudAmount,\n     collect(DISTINCT origin.accountId)[0..5] AS sampleOriginAccounts\nWHERE fraudTransactions >= $minFraudTransactions\nRETURN dest.accountId AS destinationAccount,\n       fraudTransactions,\n       round(totalFraudAmount, 2) AS totalFraudAmount,\n       sampleOriginAccounts\nORDER BY fraudTransactions DESC, totalFraudAmount DESC\nLIMIT $limit",
+    "example_questions": [
+      "Which destination accounts received repeated fraud transfers?",
+      "Find repeated fraudulent destinations.",
+      "Which accounts are common fraud recipients?"
+    ],
+    "expected_output": "Destination accounts ranked by repeated fraud count and amount."
   },
   {
-    "name": "Explain account neighborhood",
+    "name": "high_value_fraud_paths",
     "type": "cypher_template",
-    "description": "Show direct suspicious transaction context around one account.",
+    "description": "Show highest-value fraudulent movements with source and destination context.",
+    "parameters": {
+      "limit": 10
+    },
+    "cypher": "MATCH (origin:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account)\nMATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)\nRETURN origin.accountId AS sourceAccount,\n       tx.transactionId AS transactionId,\n       dest.accountId AS destinationAccount,\n       kind.name AS transactionType,\n       round(tx.amount, 2) AS amount,\n       tx.isFlaggedFraud AS flaggedByRule,\n       tx.riskText AS riskSummary\nORDER BY tx.amount DESC\nLIMIT $limit",
+    "example_questions": [
+      "Show the highest-value fraud paths.",
+      "What are the largest fraudulent movements?",
+      "Which source and destination accounts appear in top fraud transactions?"
+    ],
+    "expected_output": "Top fraud transaction paths with account and amount context."
+  },
+  {
+    "name": "account_fraud_neighborhood",
+    "type": "cypher_template",
+    "description": "Investigate one account's nearby fraudulent incoming or outgoing transactions.",
     "parameters": {
       "accountId": "C840083671",
       "limit": 25
     },
-    "cypher": "MATCH path=(account:Account {accountId: $accountId})-[:SENT|TO]-(tx:Transaction)-[:SENT|TO]-(other:Account) RETURN path LIMIT $limit"
+    "cypher": "MATCH (account:Account {accountId: $accountId})\nMATCH (counterparty:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(other:Account)\nWHERE account = counterparty OR account = other\nMATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)\nRETURN tx.transactionId AS transactionId,\n       kind.name AS transactionType,\n       counterparty.accountId AS sourceAccount,\n       other.accountId AS destinationAccount,\n       round(tx.amount, 2) AS amount,\n       tx.riskText AS riskSummary\nORDER BY tx.amount DESC\nLIMIT $limit",
+    "example_questions": [
+      "Explain the suspicious neighborhood around this account.",
+      "What fraud transactions touch this account?",
+      "Show counterparties for this account's fraud activity."
+    ],
+    "expected_output": "Fraud transactions connected to a specific account and counterparties."
   },
   {
-    "name": "Natural language graph questions",
+    "name": "fraud_type_comparison",
+    "type": "cypher_template",
+    "description": "Compare fraudulent TRANSFER and CASH_OUT activity patterns.",
+    "parameters": {
+      "limit": 10
+    },
+    "cypher": "MATCH (origin:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account)\nMATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)\nRETURN kind.name AS transactionType,\n       count(tx) AS fraudTransactions,\n       count(DISTINCT origin) AS sourceAccounts,\n       count(DISTINCT dest) AS destinationAccounts,\n       round(sum(tx.amount), 2) AS totalFraudAmount,\n       round(avg(tx.amount), 2) AS averageFraudAmount\nORDER BY fraudTransactions DESC\nLIMIT $limit",
+    "example_questions": [
+      "Compare fraudulent transfer and cash-out activity.",
+      "How do fraud types differ by account involvement?",
+      "Which fraud type has the larger total amount?"
+    ],
+    "expected_output": "Fraud count, account involvement, and amount by transaction type."
+  },
+  {
+    "name": "fraud_concentration",
+    "type": "cypher_template",
+    "description": "Identify accounts with concentrated fraud exposure by received amount and repeat count.",
+    "parameters": {
+      "limit": 10
+    },
+    "cypher": "MATCH (:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account)\nWITH dest, count(tx) AS fraudTransactions, sum(tx.amount) AS totalFraudAmount, avg(tx.amount) AS averageFraudAmount\nRETURN dest.accountId AS destinationAccount,\n       fraudTransactions,\n       round(totalFraudAmount, 2) AS totalFraudAmount,\n       round(averageFraudAmount, 2) AS averageFraudAmount\nORDER BY totalFraudAmount DESC, fraudTransactions DESC\nLIMIT $limit",
+    "example_questions": [
+      "Where is fraud amount most concentrated?",
+      "Which destination accounts received the highest fraud total?",
+      "Find concentrated fraud exposure."
+    ],
+    "expected_output": "Destination accounts ranked by total fraud amount."
+  },
+  {
+    "name": "natural_language_graph_questions",
     "type": "text2cypher",
-    "description": "Answer flexible questions about accounts, transactions, fraud labels, and transaction types.",
-    "schema_hint": "Nodes: Account(accountId), Transaction(transactionId, amount, step, isFraud, isFlaggedFraud, riskText), TransactionType(name), FraudLabel(name). Relationships: (:Account)-[:SENT]->(:Transaction)-[:TO]->(:Account), (:Transaction)-[:HAS_TYPE]->(:TransactionType), (:Transaction)-[:HAS_LABEL]->(:FraudLabel)."
+    "description": "Read-only flexible fallback for ad-hoc graph questions not covered by templates.",
+    "instructions": "You are FraudGraph Sentinel, a cyber-fraud investigation assistant for a synthetic dataset.\nUse the graph schema exactly:\n- (:Account {accountId})\n- (:Transaction {transactionId, step, amount, isFraud, isFlaggedFraud, riskText})\n- (:TransactionType {name})\n- (:FraudLabel {name})\n- (:Account)-[:SENT]->(:Transaction)-[:TO]->(:Account)\n- (:Transaction)-[:HAS_TYPE]->(:TransactionType)\n- (:Transaction)-[:HAS_LABEL]->(:FraudLabel)\n\nGenerate read-only analytical Cypher only. Never generate CREATE, MERGE, DELETE,\nDETACH DELETE, SET, REMOVE, DROP, LOAD CSV, CALL dbms, or administration commands.\nPrefer the provided Cypher Template tools for known fraud investigations. Use\nText2Cypher only for extra ad-hoc questions. Always state that the dataset is\nsynthetic and do not claim real criminal activity."
   },
   {
     "name": "Similar fraud case search",
     "type": "similarity_search",
-    "description": "Find transactions semantically similar to a described suspicious case using Transaction.riskText.",
+    "description": "Optional similar-case search over Transaction.riskText.",
     "optional": true,
-    "cost_note": "Enable only if an embedding provider is configured; Cypher Templates and Text2Cypher are enough for the zero-cost submission path.",
+    "cost_note": "Enable only if an embedding provider is configured; skip for the zero-cost path.",
     "index": "transaction_risk_text",
     "node_label": "Transaction",
     "text_property": "riskText",
