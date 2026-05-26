@@ -53,7 +53,15 @@ Use the generated machine-readable file:
 outputs/fraudgraph_sentinel/agent_tools.json
 ```
 
-Configure these Cypher Template tools:
+For the fastest setup, use Aura Console's **Import agent** flow and paste or upload:
+
+```text
+outputs/fraudgraph_sentinel/aura_agent_import_config.json
+```
+
+This import config is generated from the same source as `agent_tools.json`, keeps the agent `Internal`/private, and leaves MCP disabled for the zero-cost path.
+
+If configuring manually, create these Cypher Template tools:
 
 - `fraud_overview`
 - `repeated_fraud_destinations`
@@ -76,9 +84,10 @@ The optional risk-indicator tools are safe to use after `outputs/fraudgraph_sent
 2. Confirm the AuraDB Free instance is running.
 3. Enable organization Generative AI assistance if it is not already enabled.
 4. Open the database containing the imported FraudGraph Sentinel graph.
-5. Create an Aura Agent named `FraudGraph Sentinel`.
-6. Paste the agent description and system instructions from this document.
-7. Add the six Cypher Template tools from `agent_tools.json`.
-8. Add Text2Cypher using the graph schema context and read-only restrictions.
-9. Test the demo questions in `docs/demo-script.md`.
-10. Capture one graph screenshot and one agent-response screenshot for the hackathon reply.
+5. Prefer **Import agent** and use `outputs/fraudgraph_sentinel/aura_agent_import_config.json`.
+6. If importing is unavailable, create an Aura Agent named `FraudGraph Sentinel`.
+7. Paste the agent description and system instructions from this document.
+8. Add the eight Cypher Template tools from `agent_tools.json`.
+9. Add Text2Cypher using the graph schema context and read-only restrictions.
+10. Test the demo questions in `docs/demo-script.md`.
+11. Capture one graph screenshot and one agent-response screenshot for the hackathon reply.

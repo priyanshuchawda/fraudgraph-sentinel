@@ -49,12 +49,18 @@ def url_risk_indicators(row: dict[str, str]) -> list[str]:
         indicators.append("InsecureHTTP")
     if _truthy(row.get("HasPasswordField")):
         indicators.append("PasswordInputSignal")
-    if _truthy(row.get("Bank")) or _truthy(row.get("Pay")) or _truthy(row.get("Crypto")):
+    if (
+        _truthy(row.get("Bank"))
+        or _truthy(row.get("Pay"))
+        or _truthy(row.get("Crypto"))
+    ):
         indicators.append("PaymentKeywordSignal")
     return indicators
 
 
-def transaction_risk_indicators(row: dict[str, str], *, repeated_destinations: set[str]) -> list[str]:
+def transaction_risk_indicators(
+    row: dict[str, str], *, repeated_destinations: set[str]
+) -> list[str]:
     indicators: list[str] = []
     amount = float(row.get("amount", "0") or 0)
     old_origin = float(row.get("oldBalanceOrigin", "0") or 0)
@@ -77,7 +83,9 @@ def read_email_xlsx(path: Path) -> list[dict[str, str]]:
         shared: list[str] = []
         shared_root = ET.fromstring(archive.read("xl/sharedStrings.xml"))
         for item in shared_root.findall("a:si", ns):
-            shared.append("".join(text.text or "" for text in item.findall(".//a:t", ns)))
+            shared.append(
+                "".join(text.text or "" for text in item.findall(".//a:t", ns))
+            )
         sheet = ET.fromstring(archive.read("xl/worksheets/sheet1.xml"))
         parsed_rows: list[list[str]] = []
         for row in sheet.findall(".//a:sheetData/a:row", ns):
@@ -118,7 +126,10 @@ def export_risk_bundle(
 ) -> dict[str, int | bool]:
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    indicator_rows = [{"name": name, "description": description} for name, description in sorted(RISK_INDICATORS.items())]
+    indicator_rows = [
+        {"name": name, "description": description}
+        for name, description in sorted(RISK_INDICATORS.items())
+    ]
     email_rows: list[dict[str, str]] = []
     email_rels: list[dict[str, str]] = []
     for row in read_email_xlsx(email_xlsx):
@@ -160,26 +171,55 @@ def export_risk_bundle(
             )
             for indicator in url_risk_indicators(row):
                 url_rels.append({"urlId": url_id, "indicator": indicator})
-            if selected_phishing >= max_phishing_urls and selected_legitimate >= max_legitimate_urls:
+            if (
+                selected_phishing >= max_phishing_urls
+                and selected_legitimate >= max_legitimate_urls
+            ):
                 break
 
     with transactions_csv.open(newline="", encoding="utf-8") as handle:
         tx_rows = list(csv.DictReader(handle))
-    destination_counts = Counter(row["destination"] for row in tx_rows if _truthy(row.get("isFraud")))
-    repeated_destinations = {destination for destination, count in destination_counts.items() if count > 1}
+    destination_counts = Counter(
+        row["destination"] for row in tx_rows if _truthy(row.get("isFraud"))
+    )
+    repeated_destinations = {
+        destination for destination, count in destination_counts.items() if count > 1
+    }
     tx_rels: list[dict[str, str]] = []
     for row in tx_rows:
         if not _truthy(row.get("isFraud")):
             continue
-        for indicator in transaction_risk_indicators(row, repeated_destinations=repeated_destinations):
-            tx_rels.append({"transactionId": row["transactionId"], "indicator": indicator})
+        for indicator in transaction_risk_indicators(
+            row, repeated_destinations=repeated_destinations
+        ):
+            tx_rels.append(
+                {"transactionId": row["transactionId"], "indicator": indicator}
+            )
 
-    write_rows(output_dir / "risk_indicators.csv", ["name", "description"], indicator_rows)
-    write_rows(output_dir / "email_samples.csv", ["emailId", "subject", "sender", "label"], email_rows)
-    write_rows(output_dir / "url_samples.csv", ["urlId", "url", "domain", "label"], url_rows)
-    write_rows(output_dir / "email_risk_relationships.csv", ["emailId", "indicator"], email_rels)
-    write_rows(output_dir / "url_risk_relationships.csv", ["urlId", "indicator"], url_rels)
-    write_rows(output_dir / "transaction_risk_relationships.csv", ["transactionId", "indicator"], tx_rels)
+    write_rows(
+        output_dir / "risk_indicators.csv", ["name", "description"], indicator_rows
+    )
+    write_rows(
+        output_dir / "email_samples.csv",
+        ["emailId", "subject", "sender", "label"],
+        email_rows,
+    )
+    write_rows(
+        output_dir / "url_samples.csv", ["urlId", "url", "domain", "label"], url_rows
+    )
+    write_rows(
+        output_dir / "email_risk_relationships.csv",
+        ["emailId", "indicator"],
+        email_rels,
+    )
+    write_rows(
+        output_dir / "url_risk_relationships.csv", ["urlId", "indicator"], url_rels
+    )
+    write_rows(
+        output_dir / "transaction_risk_relationships.csv",
+        ["transactionId", "indicator"],
+        tx_rels,
+    )
 
     manifest = {
         "riskIndicators": len(indicator_rows),
@@ -192,5 +232,7 @@ def export_risk_bundle(
         "additionalRelationships": len(email_rels) + len(url_rels) + len(tx_rels),
         "causalityClaimed": False,
     }
-    (output_dir / "risk_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    (output_dir / "risk_manifest.json").write_text(
+        json.dumps(manifest, indent=2), encoding="utf-8"
+    )
     return manifest

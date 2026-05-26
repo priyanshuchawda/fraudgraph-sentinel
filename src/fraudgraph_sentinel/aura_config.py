@@ -5,8 +5,20 @@ from dataclasses import dataclass
 from pathlib import Path
 
 REQUIRED_NEO4J_ENV = ("NEO4J_URI", "NEO4J_USERNAME", "NEO4J_PASSWORD", "NEO4J_DATABASE")
-OPTIONAL_AURA_ENV = ("AURA_CLIENT_ID", "AURA_CLIENT_SECRET", "AURA_INSTANCEID", "AURA_INSTANCENAME")
-VALID_URI_PREFIXES = ("neo4j+s://", "neo4j+ssc://", "bolt+s://", "bolt+ssc://", "neo4j://", "bolt://")
+OPTIONAL_AURA_ENV = (
+    "AURA_CLIENT_ID",
+    "AURA_CLIENT_SECRET",
+    "AURA_INSTANCEID",
+    "AURA_INSTANCENAME",
+)
+VALID_URI_PREFIXES = (
+    "neo4j+s://",
+    "neo4j+ssc://",
+    "bolt+s://",
+    "bolt+ssc://",
+    "neo4j://",
+    "bolt://",
+)
 
 
 @dataclass(frozen=True)
@@ -52,7 +64,9 @@ def load_neo4j_config(path: Path | str = ".env") -> Neo4jConfig:
     env = merged_env(path)
     missing = [key for key in REQUIRED_NEO4J_ENV if not env.get(key)]
     if missing:
-        raise ValueError(f"Missing required environment variables: {', '.join(missing)}")
+        raise ValueError(
+            f"Missing required environment variables: {', '.join(missing)}"
+        )
     uri = env["NEO4J_URI"]
     if not uri.startswith(VALID_URI_PREFIXES):
         raise ValueError(
@@ -65,4 +79,3 @@ def load_neo4j_config(path: Path | str = ".env") -> Neo4jConfig:
         password=env["NEO4J_PASSWORD"],
         database=env["NEO4J_DATABASE"],
     )
-

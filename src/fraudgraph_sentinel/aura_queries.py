@@ -31,7 +31,9 @@ def assert_read_only_cypher(cypher: str) -> None:
     normalized = re.sub(r"\s+", " ", cypher.upper())
     for word in FORBIDDEN_CYPHER_WORDS:
         if word in normalized:
-            raise ValueError(f"Cypher template contains forbidden write/admin operation: {word}")
+            raise ValueError(
+                f"Cypher template contains forbidden write/admin operation: {word}"
+            )
 
 
 CORE_QUERY_TEMPLATES = (
@@ -215,4 +217,3 @@ LIMIT $limit
 
 for template in CORE_QUERY_TEMPLATES:
     assert_read_only_cypher(template.cypher)
-

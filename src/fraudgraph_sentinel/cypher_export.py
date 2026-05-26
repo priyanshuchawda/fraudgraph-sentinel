@@ -11,7 +11,9 @@ from fraudgraph_sentinel.model import Transaction
 from fraudgraph_sentinel.sampling import SampleStats
 
 
-def _write_dicts(path: Path, fieldnames: list[str], rows: Iterable[dict[str, object]]) -> int:
+def _write_dicts(
+    path: Path, fieldnames: list[str], rows: Iterable[dict[str, object]]
+) -> int:
     count = 0
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -36,9 +38,17 @@ def export_graph_files(
     types = sorted({tx.transaction_type for tx in rows})
     labels = sorted({tx.fraud_label for tx in rows})
 
-    _write_dicts(target / "accounts.csv", ["accountId"], ({"accountId": account} for account in accounts))
-    _write_dicts(target / "transaction_types.csv", ["name"], ({"name": name} for name in types))
-    _write_dicts(target / "fraud_labels.csv", ["name"], ({"name": name} for name in labels))
+    _write_dicts(
+        target / "accounts.csv",
+        ["accountId"],
+        ({"accountId": account} for account in accounts),
+    )
+    _write_dicts(
+        target / "transaction_types.csv", ["name"], ({"name": name} for name in types)
+    )
+    _write_dicts(
+        target / "fraud_labels.csv", ["name"], ({"name": name} for name in labels)
+    )
     _write_dicts(
         target / "transactions.csv",
         [
@@ -82,10 +92,18 @@ def export_graph_files(
     manifest: dict[str, int | str | bool] = {
         "sourceDataset": sample_stats.source_dataset if sample_stats else "unknown",
         "sourceRows": sample_stats.source_rows if sample_stats else 0,
-        "fraudRowsSelected": sample_stats.fraud_rows_selected if sample_stats else sum(tx.is_fraud for tx in rows),
-        "nonFraudRowsSampled": sample_stats.non_fraud_rows_sampled if sample_stats else sum(not tx.is_fraud for tx in rows),
-        "samplingRule": sample_stats.sampling_rule if sample_stats else "all_fraud_plus_first_n_non_fraud",
-        "deterministicSeed": sample_stats.deterministic_seed if sample_stats else "not_applicable_first_n",
+        "fraudRowsSelected": sample_stats.fraud_rows_selected
+        if sample_stats
+        else sum(tx.is_fraud for tx in rows),
+        "nonFraudRowsSampled": sample_stats.non_fraud_rows_sampled
+        if sample_stats
+        else sum(not tx.is_fraud for tx in rows),
+        "samplingRule": sample_stats.sampling_rule
+        if sample_stats
+        else "all_fraud_plus_first_n_non_fraud",
+        "deterministicSeed": sample_stats.deterministic_seed
+        if sample_stats
+        else "not_applicable_first_n",
         "generationDateUtc": datetime.now(UTC).replace(microsecond=0).isoformat(),
         "accounts": estimate.accounts,
         "transactions": estimate.transactions,
@@ -95,8 +113,12 @@ def export_graph_files(
         "relationships": estimate.relationships,
         "fitsConservativeAuraFree": estimate.fits_conservative_aura_free,
     }
-    (target / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    (target / "import.cypher").write_text(render_import_cypher("$IMPORT_BASE_URL"), encoding="utf-8")
+    (target / "manifest.json").write_text(
+        json.dumps(manifest, indent=2), encoding="utf-8"
+    )
+    (target / "import.cypher").write_text(
+        render_import_cypher("$IMPORT_BASE_URL"), encoding="utf-8"
+    )
     return manifest
 
 

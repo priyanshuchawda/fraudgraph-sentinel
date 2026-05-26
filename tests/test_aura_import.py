@@ -1,3 +1,5 @@
+import pytest
+
 from fraudgraph_sentinel.aura_import import (
     ACCOUNT_IMPORT_CYPHER,
     RISK_INDICATOR_IMPORT_CYPHER,
@@ -23,6 +25,11 @@ def test_chunk_rows_batches_iterables():
     chunks = list(chunk_rows(({"n": i} for i in range(5)), size=2))
 
     assert chunks == [[{"n": 0}, {"n": 1}], [{"n": 2}, {"n": 3}], [{"n": 4}]]
+
+
+def test_chunk_rows_rejects_non_positive_size():
+    with pytest.raises(ValueError, match="positive"):
+        list(chunk_rows(({"n": i} for i in range(2)), size=0))
 
 
 def test_count_verification_query_is_read_only():

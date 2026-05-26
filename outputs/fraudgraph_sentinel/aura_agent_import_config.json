@@ -1,0 +1,145 @@
+{
+  "name": "FraudGraph Sentinel",
+  "description": "A cyber-fraud investigation assistant that reasons over synthetic transaction paths, account relationships, repeated fraudulent destinations, fraud-type patterns, and shared risk indicators in Neo4j.",
+  "instructions": "You are FraudGraph Sentinel. Use Neo4j graph results to investigate synthetic cyber-fraud transaction patterns.\n\nGround every answer in graph findings. Prefer Cypher Template tools for known fraud investigations. Use Text2Cypher only for ad-hoc read-only questions.\n\nThe dataset is synthetic. Do not claim that any account represents a real person, company, victim, criminal, or real-world crime.\n\nNever perform writes or destructive operations. Do not generate CREATE, MERGE, DELETE, DETACH DELETE, SET, REMOVE, DROP, LOAD CSV, CALL dbms, or administration commands.\n\nExplain suspicious patterns in plain language using relationships, counts, transaction type, amount, account-neighborhood context, and risk indicators when present.",
+  "is_private": true,
+  "is_mcp_enabled": false,
+  "tools": [
+    {
+      "type": "cypher_template",
+      "name": "fraud_overview",
+      "description": "Summarize fraud count, amount, and transaction-type breakdown.",
+      "parameters": [
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for fraud_overview",
+          "default_value": 10
+        }
+      ],
+      "cypher": "MATCH (tx:Transaction {isFraud: true})-[:HAS_TYPE]->(kind:TransactionType)\nRETURN kind.name AS transactionType,\n       count(tx) AS fraudTransactions,\n       round(sum(tx.amount), 2) AS totalFraudAmount,\n       round(avg(tx.amount), 2) AS averageFraudAmount\nORDER BY fraudTransactions DESC\nLIMIT $limit"
+    },
+    {
+      "type": "cypher_template",
+      "name": "repeated_fraud_destinations",
+      "description": "Find destination accounts receiving repeated fraudulent transactions.",
+      "parameters": [
+        {
+          "name": "minFraudTransactions",
+          "data_type": "integer",
+          "description": "minFraudTransactions parameter for repeated_fraud_destinations",
+          "default_value": 2
+        },
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for repeated_fraud_destinations",
+          "default_value": 10
+        }
+      ],
+      "cypher": "MATCH (origin:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account)\nWITH dest, count(tx) AS fraudTransactions, sum(tx.amount) AS totalFraudAmount,\n     collect(DISTINCT origin.accountId)[0..5] AS sampleOriginAccounts\nWHERE fraudTransactions >= $minFraudTransactions\nRETURN dest.accountId AS destinationAccount,\n       fraudTransactions,\n       round(totalFraudAmount, 2) AS totalFraudAmount,\n       sampleOriginAccounts\nORDER BY fraudTransactions DESC, totalFraudAmount DESC\nLIMIT $limit"
+    },
+    {
+      "type": "cypher_template",
+      "name": "high_value_fraud_paths",
+      "description": "Show highest-value fraudulent movements with source and destination context.",
+      "parameters": [
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for high_value_fraud_paths",
+          "default_value": 10
+        }
+      ],
+      "cypher": "MATCH (origin:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account)\nMATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)\nRETURN origin.accountId AS sourceAccount,\n       tx.transactionId AS transactionId,\n       dest.accountId AS destinationAccount,\n       kind.name AS transactionType,\n       round(tx.amount, 2) AS amount,\n       tx.isFlaggedFraud AS flaggedByRule,\n       tx.riskText AS riskSummary\nORDER BY tx.amount DESC\nLIMIT $limit"
+    },
+    {
+      "type": "cypher_template",
+      "name": "account_fraud_neighborhood",
+      "description": "Investigate one account's nearby fraudulent incoming or outgoing transactions.",
+      "parameters": [
+        {
+          "name": "accountId",
+          "data_type": "string",
+          "description": "accountId parameter for account_fraud_neighborhood",
+          "default_value": "C840083671"
+        },
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for account_fraud_neighborhood",
+          "default_value": 25
+        }
+      ],
+      "cypher": "MATCH (account:Account {accountId: $accountId})\nMATCH (counterparty:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(other:Account)\nWHERE account = counterparty OR account = other\nMATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)\nRETURN tx.transactionId AS transactionId,\n       kind.name AS transactionType,\n       counterparty.accountId AS sourceAccount,\n       other.accountId AS destinationAccount,\n       round(tx.amount, 2) AS amount,\n       tx.riskText AS riskSummary\nORDER BY tx.amount DESC\nLIMIT $limit"
+    },
+    {
+      "type": "cypher_template",
+      "name": "fraud_type_comparison",
+      "description": "Compare fraudulent TRANSFER and CASH_OUT activity patterns.",
+      "parameters": [
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for fraud_type_comparison",
+          "default_value": 10
+        }
+      ],
+      "cypher": "MATCH (origin:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account)\nMATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)\nRETURN kind.name AS transactionType,\n       count(tx) AS fraudTransactions,\n       count(DISTINCT origin) AS sourceAccounts,\n       count(DISTINCT dest) AS destinationAccounts,\n       round(sum(tx.amount), 2) AS totalFraudAmount,\n       round(avg(tx.amount), 2) AS averageFraudAmount\nORDER BY fraudTransactions DESC\nLIMIT $limit"
+    },
+    {
+      "type": "cypher_template",
+      "name": "fraud_concentration",
+      "description": "Identify accounts with concentrated fraud exposure by received amount and repeat count.",
+      "parameters": [
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for fraud_concentration",
+          "default_value": 10
+        }
+      ],
+      "cypher": "MATCH (:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account)\nWITH dest, count(tx) AS fraudTransactions, sum(tx.amount) AS totalFraudAmount, avg(tx.amount) AS averageFraudAmount\nRETURN dest.accountId AS destinationAccount,\n       fraudTransactions,\n       round(totalFraudAmount, 2) AS totalFraudAmount,\n       round(averageFraudAmount, 2) AS averageFraudAmount\nORDER BY totalFraudAmount DESC, fraudTransactions DESC\nLIMIT $limit"
+    },
+    {
+      "type": "cypher_template",
+      "name": "risk_indicator_overview",
+      "description": "Summarize optional risk indicators across transactions, email samples, and URL samples.",
+      "parameters": [
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for risk_indicator_overview",
+          "default_value": 20
+        }
+      ],
+      "cypher": "MATCH (item)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator)\nWITH indicator, labels(item) AS labels\nUNWIND labels AS label\nRETURN indicator.name AS riskIndicator,\n       label AS sampleType,\n       count(*) AS linkedItems\nORDER BY riskIndicator ASC, linkedItems DESC\nLIMIT $limit"
+    },
+    {
+      "type": "cypher_template",
+      "name": "shared_risk_indicator_context",
+      "description": "Show how one risk indicator appears across separate synthetic datasets without claiming causality.",
+      "parameters": [
+        {
+          "name": "indicator",
+          "data_type": "string",
+          "description": "indicator parameter for shared_risk_indicator_context",
+          "default_value": "PaymentKeywordSignal"
+        },
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for shared_risk_indicator_context",
+          "default_value": 10
+        }
+      ],
+      "cypher": "MATCH (item)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator {name: $indicator})\nRETURN indicator.name AS riskIndicator,\n       labels(item) AS itemLabels,\n       coalesce(item.transactionId, item.emailId, item.urlId) AS itemId,\n       coalesce(item.riskText, item.subject, item.domain) AS context\nLIMIT $limit"
+    },
+    {
+      "type": "text2cypher",
+      "name": "natural_language_graph_questions",
+      "description": "Read-only flexible fallback for ad-hoc graph questions not covered by templates.",
+      "instructions": "You are FraudGraph Sentinel, a cyber-fraud investigation assistant for a synthetic dataset.\nUse the graph schema exactly:\n- (:Account {accountId})\n- (:Transaction {transactionId, step, amount, isFraud, isFlaggedFraud, riskText})\n- (:TransactionType {name})\n- (:FraudLabel {name})\n- (:RiskIndicator {name, description})\n- (:EmailSample {emailId, subject, sender, label})\n- (:URLSample {urlId, url, domain, label})\n- (:Account)-[:SENT]->(:Transaction)-[:TO]->(:Account)\n- (:Transaction)-[:HAS_TYPE]->(:TransactionType)\n- (:Transaction)-[:HAS_LABEL]->(:FraudLabel)\n- (:Transaction)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)\n- (:EmailSample)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)\n- (:URLSample)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)\n\nGenerate read-only analytical Cypher only. Never generate CREATE, MERGE, DELETE,\nDETACH DELETE, SET, REMOVE, DROP, LOAD CSV, CALL dbms, or administration commands.\nPrefer the provided Cypher Template tools for known fraud investigations. Use\nText2Cypher only for extra ad-hoc questions. Always state that the dataset is\nsynthetic and do not claim real criminal activity."
+    }
+  ]
+}

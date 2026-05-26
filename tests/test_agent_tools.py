@@ -1,4 +1,8 @@
-from fraudgraph_sentinel.agent_tools import build_agent_tool_specs
+from fraudgraph_sentinel.agent_tools import (
+    build_agent_tool_specs,
+    build_aura_agent_import_config,
+    infer_aura_parameter_type,
+)
 
 
 def test_agent_tool_specs_include_required_challenge_tools():
@@ -26,7 +30,36 @@ def test_text2cypher_spec_blocks_write_and_admin_queries():
     specs = build_agent_tool_specs()
     text2cypher = next(spec for spec in specs if spec["type"] == "text2cypher")
 
-    instructions = str(text2cypher["instructions"]).upper()
+    instructions = str(text2cypher["instructions"])
 
-    for forbidden in ["CREATE", "MERGE", "DELETE", "DETACH DELETE", "SET", "REMOVE", "DROP", "LOAD CSV"]:
-        assert forbidden in instructions
+    for forbidden in [
+        "CREATE",
+        "MERGE",
+        "DELETE",
+        "DETACH DELETE",
+        "SET",
+        "REMOVE",
+        "DROP",
+        "LOAD CSV",
+    ]:
+        assert forbidden in instructions.upper()
+
+    for schema_term in ["RiskIndicator", "EmailSample", "URLSample"]:
+        assert schema_term in instructions
+
+
+def test_aura_agent_import_config_is_private_and_importable():
+    config = build_aura_agent_import_config()
+
+    assert config["name"] == "FraudGraph Sentinel"
+    assert config["is_private"] is True
+    assert config["is_mcp_enabled"] is False
+    assert any(tool["type"] == "cypher_template" for tool in config["tools"])
+    assert any(tool["type"] == "text2cypher" for tool in config["tools"])
+
+
+def test_aura_parameter_type_inference_matches_console_options():
+    assert infer_aura_parameter_type(True) == "boolean"
+    assert infer_aura_parameter_type(1) == "integer"
+    assert infer_aura_parameter_type(1.5) == "float"
+    assert infer_aura_parameter_type("C123") == "string"

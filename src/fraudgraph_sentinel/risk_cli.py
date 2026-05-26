@@ -8,7 +8,9 @@ from fraudgraph_sentinel.risk_enhancement import export_risk_bundle
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Build optional ScamChain risk-indicator sample bundle.")
+    parser = argparse.ArgumentParser(
+        description="Build optional ScamChain risk-indicator sample bundle."
+    )
     parser.add_argument("--email-xlsx", required=True, type=Path)
     parser.add_argument("--url-csv", required=True, type=Path)
     parser.add_argument("--transactions-csv", required=True, type=Path)
