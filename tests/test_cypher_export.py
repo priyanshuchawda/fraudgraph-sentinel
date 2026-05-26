@@ -52,5 +52,7 @@ def test_import_cypher_contains_constraints_and_load_csv_statements():
     cypher = render_import_cypher(base_url="https://example.com/import")
 
     assert "CREATE CONSTRAINT account_id" in cypher
-    assert "LOAD CSV WITH HEADERS FROM 'https://example.com/import/accounts.csv'" in cypher
+    assert (
+        "LOAD CSV WITH HEADERS FROM 'https://example.com/import/accounts.csv'" in cypher
+    )
     assert "MERGE (origin)-[:SENT]->(tx)" in cypher

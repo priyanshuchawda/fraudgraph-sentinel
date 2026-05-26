@@ -6,7 +6,12 @@ from fraudgraph_sentinel.risk_enhancement import (
 
 
 def test_email_risk_indicators_map_flags_without_claiming_causality():
-    row = {"label": "phishing", "has_link": "1.0", "has_attachment": "1.0", "urgency_flag": "1.0"}
+    row = {
+        "label": "phishing",
+        "has_link": "1.0",
+        "has_attachment": "1.0",
+        "urgency_flag": "1.0",
+    }
 
     assert email_risk_indicators(row) == [
         "PhishingEmailLabel",

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -26,6 +27,16 @@ def required_env_present(env: dict[str, str]) -> bool:
 
 def format_result_line(status: str, command: str, seconds: float, log_path: str) -> str:
     return f"{status} | {command} | {seconds:.2f}s | log={log_path}"
+
+
+def subprocess_env(base_env: dict[str, str] | None = None) -> dict[str, str]:
+    env = dict(os.environ if base_env is None else base_env)
+    src_path = str((Path.cwd() / "src").resolve())
+    pythonpath = env.get("PYTHONPATH")
+    env["PYTHONPATH"] = (
+        src_path if not pythonpath else f"{src_path}{os.pathsep}{pythonpath}"
+    )
+    return env
 
 
 def build_checks() -> list[Check]:
@@ -64,20 +75,59 @@ def build_checks() -> list[Check]:
             "agent-tools.log",
         ),
         Check(
+            "Aura Agent import JSON validation",
+            [
+                python,
+                "-c",
+                (
+                    "import json, pathlib; "
+                    "config=json.loads(pathlib.Path('outputs/fraudgraph_sentinel/aura_agent_import_config.json').read_text()); "
+                    "assert config['name'] == 'FraudGraph Sentinel'; "
+                    "assert config['is_private'] is True; "
+                    "assert config['is_mcp_enabled'] is False; "
+                    "assert any(t['type']=='cypher_template' for t in config['tools']); "
+                    "assert any(t['type']=='text2cypher' for t in config['tools']); "
+                    "print(json.dumps({'tools': len(config['tools']), 'private': config['is_private']}))"
+                ),
+            ],
+            "agent-import-config.log",
+        ),
+        Check(
             "AuraDB connectivity smoke",
-            [python, "-m", "fraudgraph_sentinel.aura_cli", "--env-file", ".env", "connect"],
+            [
+                python,
+                "-m",
+                "fraudgraph_sentinel.aura_cli",
+                "--env-file",
+                ".env",
+                "connect",
+            ],
             "aura-connect.log",
             requires_env=True,
         ),
         Check(
             "AuraDB graph verification",
-            [python, "-m", "fraudgraph_sentinel.aura_cli", "--env-file", ".env", "verify"],
+            [
+                python,
+                "-m",
+                "fraudgraph_sentinel.aura_cli",
+                "--env-file",
+                ".env",
+                "verify",
+            ],
             "aura-verify.log",
             requires_env=True,
         ),
         Check(
             "AuraDB query verification",
-            [python, "-m", "fraudgraph_sentinel.aura_cli", "--env-file", ".env", "query-check"],
+            [
+                python,
+                "-m",
+                "fraudgraph_sentinel.aura_cli",
+                "--env-file",
+                ".env",
+                "query-check",
+            ],
             "aura-query-check.log",
             requires_env=True,
         ),
@@ -88,13 +138,16 @@ def run_check(check: Check, log_dir: Path, env: dict[str, str]) -> bool:
     log_path = log_dir / check.log_name
     if check.requires_env and not required_env_present(env):
         print(f"SKIP | {check.name} | missing required environment variable")
-        log_path.write_text("SKIP: missing required environment variable\n", encoding="utf-8")
+        log_path.write_text(
+            "SKIP: missing required environment variable\n", encoding="utf-8"
+        )
         return True
 
     start = time.perf_counter()
     completed = subprocess.run(
         check.command,
         cwd=Path.cwd(),
+        env=subprocess_env(),
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
@@ -112,8 +165,12 @@ def run_check(check: Check, log_dir: Path, env: dict[str, str]) -> bool:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run compact FraudGraph Sentinel validation checks.")
-    parser.add_argument("--run-id", default=datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ"))
+    parser = argparse.ArgumentParser(
+        description="Run compact FraudGraph Sentinel validation checks."
+    )
+    parser.add_argument(
+        "--run-id", default=datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    )
     args = parser.parse_args(argv)
 
     log_dir = Path("artifacts") / "validation" / args.run_id
@@ -123,7 +180,9 @@ def main(argv: list[str] | None = None) -> int:
     for check in build_checks():
         ok = run_check(check, log_dir, env) and ok
     summary = {"runId": args.run_id, "result": "PASS" if ok else "FAIL"}
-    (log_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    (log_dir / "summary.json").write_text(
+        json.dumps(summary, indent=2), encoding="utf-8"
+    )
     print(f"RUN_ID={args.run_id}")
     print(f"RESULT={'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1

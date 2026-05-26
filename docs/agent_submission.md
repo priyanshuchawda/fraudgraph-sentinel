@@ -40,6 +40,8 @@ Prepared Cypher Template tools:
 - `account_fraud_neighborhood`
 - `fraud_type_comparison`
 - `fraud_concentration`
+- `risk_indicator_overview`
+- `shared_risk_indicator_context`
 
 Optional future tool:
 
@@ -74,6 +76,11 @@ Validated queries:
 - fraud concentration
 - risk indicator overview
 - shared risk indicator context
+
+Aura Console setup files:
+
+- `outputs/fraudgraph_sentinel/agent_tools.json`
+- `outputs/fraudgraph_sentinel/aura_agent_import_config.json`
 
 ## GitHub Repository
 

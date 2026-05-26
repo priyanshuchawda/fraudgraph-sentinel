@@ -107,11 +107,18 @@ def get_driver(config: Neo4jConfig):
     try:
         from neo4j import GraphDatabase
     except ImportError as error:
-        raise RuntimeError("The official neo4j Python driver is required. Install project dependencies first.") from error
+        raise RuntimeError(
+            "The official neo4j Python driver is required. Install project dependencies first."
+        ) from error
     return GraphDatabase.driver(config.uri, auth=(config.username, config.password))
 
 
-def chunk_rows(rows: Iterable[dict[str, str]], *, size: int) -> Iterator[list[dict[str, str]]]:
+def chunk_rows(
+    rows: Iterable[dict[str, str]], *, size: int
+) -> Iterator[list[dict[str, str]]]:
+    if size <= 0:
+        raise ValueError("chunk size must be positive")
+
     batch: list[dict[str, str]] = []
     for row in rows:
         batch.append(row)
@@ -136,7 +143,9 @@ def create_constraints(session) -> None:
         session.run(cypher).consume()
 
 
-def import_bundle(driver, config: Neo4jConfig, bundle_dir: Path | str, *, batch_size: int = 1_000) -> None:
+def import_bundle(
+    driver, config: Neo4jConfig, bundle_dir: Path | str, *, batch_size: int = 1_000
+) -> None:
     bundle = Path(bundle_dir)
     with driver.session(database=config.database) as session:
         create_constraints(session)
@@ -150,7 +159,9 @@ def import_bundle(driver, config: Neo4jConfig, bundle_dir: Path | str, *, batch_
                 session.execute_write(run_write_batch, cypher, batch)
 
 
-def import_risk_bundle(driver, config: Neo4jConfig, bundle_dir: Path | str, *, batch_size: int = 1_000) -> None:
+def import_risk_bundle(
+    driver, config: Neo4jConfig, bundle_dir: Path | str, *, batch_size: int = 1_000
+) -> None:
     bundle = Path(bundle_dir)
     with driver.session(database=config.database) as session:
         create_constraints(session)

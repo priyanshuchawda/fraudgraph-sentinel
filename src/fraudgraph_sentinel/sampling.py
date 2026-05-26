@@ -69,11 +69,17 @@ def sample_transactions(
     return sampled
 
 
-def sample_transactions_from_csv(path: Path | str, *, max_non_fraud: int) -> list[Transaction]:
-    return sample_transactions_from_csv_with_stats(path, max_non_fraud=max_non_fraud).transactions
+def sample_transactions_from_csv(
+    path: Path | str, *, max_non_fraud: int
+) -> list[Transaction]:
+    return sample_transactions_from_csv_with_stats(
+        path, max_non_fraud=max_non_fraud
+    ).transactions
 
 
-def sample_transactions_from_csv_with_stats(path: Path | str, *, max_non_fraud: int) -> SampleResult:
+def sample_transactions_from_csv_with_stats(
+    path: Path | str, *, max_non_fraud: int
+) -> SampleResult:
     sampled: list[Transaction] = []
     non_fraud_count = 0
     fraud_count = 0

@@ -55,4 +55,3 @@ class Transaction:
             is_fraud=parse_bool(row["isFraud"]),
             is_flagged_fraud=parse_bool(row["isFlaggedFraud"]),
         )
-

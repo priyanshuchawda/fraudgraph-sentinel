@@ -75,6 +75,11 @@ Primary tools:
 - Cypher Templates for known investigation workflows
 - Text2Cypher for read-only ad-hoc graph questions
 
+Aura Console files:
+
+- `outputs/fraudgraph_sentinel/agent_tools.json`
+- `outputs/fraudgraph_sentinel/aura_agent_import_config.json`
+
 Prepared Cypher Template tools:
 
 - `fraud_overview`
