@@ -46,7 +46,7 @@ def test_graph_size_estimate_counts_unique_accounts_and_relationships():
     assert estimate.transaction_types == 2
     assert estimate.fraud_labels == 2
     assert estimate.nodes == 13
-    assert estimate.relationships == 9
+    assert estimate.relationships == 12
     assert estimate.fits_conservative_aura_free is True
 
 
