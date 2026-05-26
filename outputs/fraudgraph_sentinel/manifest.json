@@ -1,0 +1,16 @@
+{
+  "sourceDataset": "Synthetic_Financial_datasets_log.csv",
+  "sourceRows": 6362620,
+  "fraudRowsSelected": 8213,
+  "nonFraudRowsSampled": 5000,
+  "samplingRule": "all_fraud_plus_first_n_non_fraud",
+  "deterministicSeed": "not_applicable_first_n",
+  "generationDateUtc": "2026-05-26T13:57:09+00:00",
+  "accounts": 24365,
+  "transactions": 13213,
+  "transactionTypes": 5,
+  "fraudLabels": 2,
+  "nodes": 37585,
+  "relationships": 39639,
+  "fitsConservativeAuraFree": true
+}

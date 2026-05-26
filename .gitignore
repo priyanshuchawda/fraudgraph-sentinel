@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+
+artifacts/
+datasets/
+__pycache__/
+.pytest_cache/
+.venv/
+.antigravitycli/
+
+*.py[cod]
+*$py.class
+
