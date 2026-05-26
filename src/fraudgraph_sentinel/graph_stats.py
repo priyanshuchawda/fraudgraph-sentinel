@@ -27,7 +27,7 @@ def estimate_graph_size(transactions: Iterable[Transaction]) -> GraphSizeEstimat
     transaction_types = {tx.transaction_type for tx in rows}
     fraud_labels = {tx.fraud_label for tx in rows}
     nodes = len(accounts) + len(rows) + len(transaction_types) + len(fraud_labels)
-    relationships = len(rows) * 3
+    relationships = len(rows) * 4
     return GraphSizeEstimate(
         accounts=len(accounts),
         transactions=len(rows),
@@ -40,4 +40,3 @@ def estimate_graph_size(transactions: Iterable[Transaction]) -> GraphSizeEstimat
             and relationships <= CONSERVATIVE_AURA_FREE_RELATIONSHIP_LIMIT
         ),
     )
-

@@ -5,12 +5,12 @@
   "nonFraudRowsSampled": 5000,
   "samplingRule": "all_fraud_plus_first_n_non_fraud",
   "deterministicSeed": "not_applicable_first_n",
-  "generationDateUtc": "2026-05-26T13:57:09+00:00",
+  "generationDateUtc": "2026-05-26T14:08:05+00:00",
   "accounts": 24365,
   "transactions": 13213,
   "transactionTypes": 5,
   "fraudLabels": 2,
   "nodes": 37585,
-  "relationships": 39639,
+  "relationships": 52852,
   "fitsConservativeAuraFree": true
 }
