@@ -1,0 +1,11 @@
+{
+  "riskIndicators": 12,
+  "emailSamples": 800,
+  "urlSamples": 400,
+  "emailRiskRelationships": 1848,
+  "urlRiskRelationships": 543,
+  "transactionRiskRelationships": 19019,
+  "additionalNodes": 1212,
+  "additionalRelationships": 21410,
+  "causalityClaimed": false
+}

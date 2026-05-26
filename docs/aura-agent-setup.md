@@ -40,6 +40,9 @@ Relationships:
 - (:Transaction)-[:TO]->(:Account)
 - (:Transaction)-[:HAS_TYPE]->(:TransactionType)
 - (:Transaction)-[:HAS_LABEL]->(:FraudLabel)
+- (:Transaction)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)
+- (:EmailSample)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)
+- (:URLSample)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)
 ```
 
 ## Required Tools
@@ -58,10 +61,14 @@ Configure these Cypher Template tools:
 - `account_fraud_neighborhood`
 - `fraud_type_comparison`
 - `fraud_concentration`
+- `risk_indicator_overview`
+- `shared_risk_indicator_context`
 
 Enable Text2Cypher with the read-only system instructions above.
 
 Skip Similarity Search for the zero-cost path unless embeddings are already configured and approved.
+
+The optional risk-indicator tools are safe to use after `outputs/fraudgraph_sentinel_risk` has been imported. They connect separate synthetic datasets by shared risk indicators only; do not present them as causal attack chains.
 
 ## Manual Aura Console Steps
 

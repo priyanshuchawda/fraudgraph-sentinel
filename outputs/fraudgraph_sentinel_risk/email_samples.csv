@@ -1,0 +1,801 @@
+emailId,subject,sender,label
+email-1,Monthly Report,admin@company.com,legitimate
+email-2,Salary Payment Notification,hr@company.com,legitimate
+email-3,Order Delivered,sales@shop.com,legitimate
+email-4,Salary Payment Notification,hr@company.com,legitimate
+email-5,Team Meeting Reminder,manager@company.com,legitimate
+email-6,Account suspended alert,support@bank-secure.com,phishing
+email-7,Monthly Report,admin@company.com,legitimate
+email-8,Monthly Report,admin@company.com,legitimate
+email-9,BVN Update Required,noreply@fakebank.com,phishing
+email-10,Order Delivered,sales@shop.com,legitimate
+email-11,Password Expiry Notice,it-support@securemail.com,phishing
+email-12,Account suspended alert,support@bank-secure.com,phishing
+email-13,Salary Payment Notification,hr@company.com,legitimate
+email-14,Monthly Report,admin@company.com,legitimate
+email-15,Password Expiry Notice,it-support@securemail.com,phishing
+email-16,Password Expiry Notice,it-support@securemail.com,phishing
+email-17,Monthly Report,admin@company.com,legitimate
+email-18,Order Delivered,sales@shop.com,legitimate
+email-19,Team Meeting Reminder,manager@company.com,legitimate
+email-20,BVN Update Required,noreply@fakebank.com,phishing
+email-21,Salary Payment Notification,hr@company.com,legitimate
+email-22,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-23,Account suspended alert,support@bank-secure.com,phishing
+email-24,Account suspended alert,support@bank-secure.com,phishing
+email-25,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-26,Team Meeting Reminder,manager@company.com,legitimate
+email-27,BVN Update Required,noreply@fakebank.com,phishing
+email-28,Password Expiry Notice,it-support@securemail.com,phishing
+email-29,BVN Update Required,noreply@fakebank.com,phishing
+email-30,Team Meeting Reminder,manager@company.com,legitimate
+email-31,Account suspended alert,support@bank-secure.com,phishing
+email-32,BVN Update Required,noreply@fakebank.com,phishing
+email-33,Order Delivered,sales@shop.com,legitimate
+email-34,Password Expiry Notice,it-support@securemail.com,phishing
+email-35,Salary Payment Notification,hr@company.com,legitimate
+email-36,Salary Payment Notification,hr@company.com,legitimate
+email-37,Salary Payment Notification,hr@company.com,legitimate
+email-38,Account suspended alert,support@bank-secure.com,phishing
+email-39,Monthly Report,admin@company.com,legitimate
+email-40,Order Delivered,sales@shop.com,legitimate
+email-41,Account suspended alert,support@bank-secure.com,phishing
+email-42,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-43,BVN Update Required,noreply@fakebank.com,phishing
+email-44,Monthly Report,admin@company.com,legitimate
+email-45,Team Meeting Reminder,manager@company.com,legitimate
+email-46,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-47,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-48,Salary Payment Notification,hr@company.com,legitimate
+email-49,BVN Update Required,noreply@fakebank.com,phishing
+email-50,Team Meeting Reminder,manager@company.com,legitimate
+email-51,Order Delivered,sales@shop.com,legitimate
+email-52,Salary Payment Notification,hr@company.com,legitimate
+email-53,Account suspended alert,support@bank-secure.com,phishing
+email-54,Password Expiry Notice,it-support@securemail.com,phishing
+email-55,Salary Payment Notification,hr@company.com,legitimate
+email-56,Team Meeting Reminder,manager@company.com,legitimate
+email-57,Order Delivered,sales@shop.com,legitimate
+email-58,Password Expiry Notice,it-support@securemail.com,phishing
+email-59,Order Delivered,sales@shop.com,legitimate
+email-60,Team Meeting Reminder,manager@company.com,legitimate
+email-61,Salary Payment Notification,hr@company.com,legitimate
+email-62,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-63,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-64,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-65,BVN Update Required,noreply@fakebank.com,phishing
+email-66,BVN Update Required,noreply@fakebank.com,phishing
+email-67,Monthly Report,admin@company.com,legitimate
+email-68,Account suspended alert,support@bank-secure.com,phishing
+email-69,Account suspended alert,support@bank-secure.com,phishing
+email-70,Account suspended alert,support@bank-secure.com,phishing
+email-71,Monthly Report,admin@company.com,legitimate
+email-72,Team Meeting Reminder,manager@company.com,legitimate
+email-73,Team Meeting Reminder,manager@company.com,legitimate
+email-74,Monthly Report,admin@company.com,legitimate
+email-75,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-76,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-77,Password Expiry Notice,it-support@securemail.com,phishing
+email-78,Team Meeting Reminder,manager@company.com,legitimate
+email-79,Password Expiry Notice,it-support@securemail.com,phishing
+email-80,BVN Update Required,noreply@fakebank.com,phishing
+email-81,Password Expiry Notice,it-support@securemail.com,phishing
+email-82,BVN Update Required,noreply@fakebank.com,phishing
+email-83,Monthly Report,admin@company.com,legitimate
+email-84,Password Expiry Notice,it-support@securemail.com,phishing
+email-85,Order Delivered,sales@shop.com,legitimate
+email-86,BVN Update Required,noreply@fakebank.com,phishing
+email-87,Account suspended alert,support@bank-secure.com,phishing
+email-88,BVN Update Required,noreply@fakebank.com,phishing
+email-89,Account suspended alert,support@bank-secure.com,phishing
+email-90,BVN Update Required,noreply@fakebank.com,phishing
+email-91,Team Meeting Reminder,manager@company.com,legitimate
+email-92,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-93,BVN Update Required,noreply@fakebank.com,phishing
+email-94,Order Delivered,sales@shop.com,legitimate
+email-95,Monthly Report,admin@company.com,legitimate
+email-96,Password Expiry Notice,it-support@securemail.com,phishing
+email-97,BVN Update Required,noreply@fakebank.com,phishing
+email-98,Order Delivered,sales@shop.com,legitimate
+email-99,BVN Update Required,noreply@fakebank.com,phishing
+email-100,Team Meeting Reminder,manager@company.com,legitimate
+email-101,Monthly Report,admin@company.com,legitimate
+email-102,Password Expiry Notice,it-support@securemail.com,phishing
+email-103,Password Expiry Notice,it-support@securemail.com,phishing
+email-104,Salary Payment Notification,hr@company.com,legitimate
+email-105,Account suspended alert,support@bank-secure.com,phishing
+email-106,Order Delivered,sales@shop.com,legitimate
+email-107,Monthly Report,admin@company.com,legitimate
+email-108,Account suspended alert,support@bank-secure.com,phishing
+email-109,Password Expiry Notice,it-support@securemail.com,phishing
+email-110,Password Expiry Notice,it-support@securemail.com,phishing
+email-111,Order Delivered,sales@shop.com,legitimate
+email-112,Password Expiry Notice,it-support@securemail.com,phishing
+email-113,Account suspended alert,support@bank-secure.com,phishing
+email-114,BVN Update Required,noreply@fakebank.com,phishing
+email-115,Order Delivered,sales@shop.com,legitimate
+email-116,BVN Update Required,noreply@fakebank.com,phishing
+email-117,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-118,Account suspended alert,support@bank-secure.com,phishing
+email-119,Account suspended alert,support@bank-secure.com,phishing
+email-120,BVN Update Required,noreply@fakebank.com,phishing
+email-121,Password Expiry Notice,it-support@securemail.com,phishing
+email-122,Password Expiry Notice,it-support@securemail.com,phishing
+email-123,BVN Update Required,noreply@fakebank.com,phishing
+email-124,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-125,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-126,Order Delivered,sales@shop.com,legitimate
+email-127,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-128,Salary Payment Notification,hr@company.com,legitimate
+email-129,Salary Payment Notification,hr@company.com,legitimate
+email-130,Team Meeting Reminder,manager@company.com,legitimate
+email-131,Order Delivered,sales@shop.com,legitimate
+email-132,Order Delivered,sales@shop.com,legitimate
+email-133,Account suspended alert,support@bank-secure.com,phishing
+email-134,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-135,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-136,Monthly Report,admin@company.com,legitimate
+email-137,Team Meeting Reminder,manager@company.com,legitimate
+email-138,BVN Update Required,noreply@fakebank.com,phishing
+email-139,Password Expiry Notice,it-support@securemail.com,phishing
+email-140,Account suspended alert,support@bank-secure.com,phishing
+email-141,Monthly Report,admin@company.com,legitimate
+email-142,BVN Update Required,noreply@fakebank.com,phishing
+email-143,BVN Update Required,noreply@fakebank.com,phishing
+email-144,Salary Payment Notification,hr@company.com,legitimate
+email-145,BVN Update Required,noreply@fakebank.com,phishing
+email-146,Account suspended alert,support@bank-secure.com,phishing
+email-147,Team Meeting Reminder,manager@company.com,legitimate
+email-148,Account suspended alert,support@bank-secure.com,phishing
+email-149,Salary Payment Notification,hr@company.com,legitimate
+email-150,Team Meeting Reminder,manager@company.com,legitimate
+email-151,Salary Payment Notification,hr@company.com,legitimate
+email-152,BVN Update Required,noreply@fakebank.com,phishing
+email-153,Account suspended alert,support@bank-secure.com,phishing
+email-154,Monthly Report,admin@company.com,legitimate
+email-155,Salary Payment Notification,hr@company.com,legitimate
+email-156,Account suspended alert,support@bank-secure.com,phishing
+email-157,Order Delivered,sales@shop.com,legitimate
+email-158,Salary Payment Notification,hr@company.com,legitimate
+email-159,Order Delivered,sales@shop.com,legitimate
+email-160,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-161,Password Expiry Notice,it-support@securemail.com,phishing
+email-162,Order Delivered,sales@shop.com,legitimate
+email-163,Salary Payment Notification,hr@company.com,legitimate
+email-164,Team Meeting Reminder,manager@company.com,legitimate
+email-165,BVN Update Required,noreply@fakebank.com,phishing
+email-166,Team Meeting Reminder,manager@company.com,legitimate
+email-167,Team Meeting Reminder,manager@company.com,legitimate
+email-168,Team Meeting Reminder,manager@company.com,legitimate
+email-169,BVN Update Required,noreply@fakebank.com,phishing
+email-170,Password Expiry Notice,it-support@securemail.com,phishing
+email-171,Team Meeting Reminder,manager@company.com,legitimate
+email-172,Team Meeting Reminder,manager@company.com,legitimate
+email-173,Account suspended alert,support@bank-secure.com,phishing
+email-174,BVN Update Required,noreply@fakebank.com,phishing
+email-175,Order Delivered,sales@shop.com,legitimate
+email-176,BVN Update Required,noreply@fakebank.com,phishing
+email-177,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-178,BVN Update Required,noreply@fakebank.com,phishing
+email-179,Account suspended alert,support@bank-secure.com,phishing
+email-180,Password Expiry Notice,it-support@securemail.com,phishing
+email-181,Password Expiry Notice,it-support@securemail.com,phishing
+email-182,Account suspended alert,support@bank-secure.com,phishing
+email-183,Salary Payment Notification,hr@company.com,legitimate
+email-184,Team Meeting Reminder,manager@company.com,legitimate
+email-185,Order Delivered,sales@shop.com,legitimate
+email-186,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-187,Order Delivered,sales@shop.com,legitimate
+email-188,BVN Update Required,noreply@fakebank.com,phishing
+email-189,Password Expiry Notice,it-support@securemail.com,phishing
+email-190,Team Meeting Reminder,manager@company.com,legitimate
+email-191,Account suspended alert,support@bank-secure.com,phishing
+email-192,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-193,Account suspended alert,support@bank-secure.com,phishing
+email-194,Order Delivered,sales@shop.com,legitimate
+email-195,Order Delivered,sales@shop.com,legitimate
+email-196,Account suspended alert,support@bank-secure.com,phishing
+email-197,Password Expiry Notice,it-support@securemail.com,phishing
+email-198,Monthly Report,admin@company.com,legitimate
+email-199,Salary Payment Notification,hr@company.com,legitimate
+email-200,Order Delivered,sales@shop.com,legitimate
+email-201,Account suspended alert,support@bank-secure.com,phishing
+email-202,Account suspended alert,support@bank-secure.com,phishing
+email-203,Monthly Report,admin@company.com,legitimate
+email-204,Account suspended alert,support@bank-secure.com,phishing
+email-205,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-206,Team Meeting Reminder,manager@company.com,legitimate
+email-207,Team Meeting Reminder,manager@company.com,legitimate
+email-208,BVN Update Required,noreply@fakebank.com,phishing
+email-209,Salary Payment Notification,hr@company.com,legitimate
+email-210,Monthly Report,admin@company.com,legitimate
+email-211,Team Meeting Reminder,manager@company.com,legitimate
+email-212,Monthly Report,admin@company.com,legitimate
+email-213,Password Expiry Notice,it-support@securemail.com,phishing
+email-214,Monthly Report,admin@company.com,legitimate
+email-215,Password Expiry Notice,it-support@securemail.com,phishing
+email-216,BVN Update Required,noreply@fakebank.com,phishing
+email-217,Salary Payment Notification,hr@company.com,legitimate
+email-218,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-219,BVN Update Required,noreply@fakebank.com,phishing
+email-220,BVN Update Required,noreply@fakebank.com,phishing
+email-221,Password Expiry Notice,it-support@securemail.com,phishing
+email-222,Account suspended alert,support@bank-secure.com,phishing
+email-223,Salary Payment Notification,hr@company.com,legitimate
+email-224,Monthly Report,admin@company.com,legitimate
+email-225,Team Meeting Reminder,manager@company.com,legitimate
+email-226,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-227,Order Delivered,sales@shop.com,legitimate
+email-228,Password Expiry Notice,it-support@securemail.com,phishing
+email-229,Salary Payment Notification,hr@company.com,legitimate
+email-230,BVN Update Required,noreply@fakebank.com,phishing
+email-231,Salary Payment Notification,hr@company.com,legitimate
+email-232,Salary Payment Notification,hr@company.com,legitimate
+email-233,Salary Payment Notification,hr@company.com,legitimate
+email-234,Salary Payment Notification,hr@company.com,legitimate
+email-235,Account suspended alert,support@bank-secure.com,phishing
+email-236,Monthly Report,admin@company.com,legitimate
+email-237,Salary Payment Notification,hr@company.com,legitimate
+email-238,Password Expiry Notice,it-support@securemail.com,phishing
+email-239,Order Delivered,sales@shop.com,legitimate
+email-240,Salary Payment Notification,hr@company.com,legitimate
+email-241,Account suspended alert,support@bank-secure.com,phishing
+email-242,Monthly Report,admin@company.com,legitimate
+email-243,Order Delivered,sales@shop.com,legitimate
+email-244,Password Expiry Notice,it-support@securemail.com,phishing
+email-245,Account suspended alert,support@bank-secure.com,phishing
+email-246,Account suspended alert,support@bank-secure.com,phishing
+email-247,Team Meeting Reminder,manager@company.com,legitimate
+email-248,Team Meeting Reminder,manager@company.com,legitimate
+email-249,Order Delivered,sales@shop.com,legitimate
+email-250,Monthly Report,admin@company.com,legitimate
+email-251,Team Meeting Reminder,manager@company.com,legitimate
+email-252,Password Expiry Notice,it-support@securemail.com,phishing
+email-253,Order Delivered,sales@shop.com,legitimate
+email-254,Team Meeting Reminder,manager@company.com,legitimate
+email-255,Monthly Report,admin@company.com,legitimate
+email-256,Team Meeting Reminder,manager@company.com,legitimate
+email-257,Order Delivered,sales@shop.com,legitimate
+email-258,Password Expiry Notice,it-support@securemail.com,phishing
+email-259,Account suspended alert,support@bank-secure.com,phishing
+email-260,Salary Payment Notification,hr@company.com,legitimate
+email-261,Account suspended alert,support@bank-secure.com,phishing
+email-262,Team Meeting Reminder,manager@company.com,legitimate
+email-263,Password Expiry Notice,it-support@securemail.com,phishing
+email-264,Account suspended alert,support@bank-secure.com,phishing
+email-265,BVN Update Required,noreply@fakebank.com,phishing
+email-266,Order Delivered,sales@shop.com,legitimate
+email-267,Monthly Report,admin@company.com,legitimate
+email-268,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-269,BVN Update Required,noreply@fakebank.com,phishing
+email-270,Account suspended alert,support@bank-secure.com,phishing
+email-271,Salary Payment Notification,hr@company.com,legitimate
+email-272,Password Expiry Notice,it-support@securemail.com,phishing
+email-273,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-274,Team Meeting Reminder,manager@company.com,legitimate
+email-275,Monthly Report,admin@company.com,legitimate
+email-276,Password Expiry Notice,it-support@securemail.com,phishing
+email-277,Team Meeting Reminder,manager@company.com,legitimate
+email-278,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-279,Team Meeting Reminder,manager@company.com,legitimate
+email-280,Team Meeting Reminder,manager@company.com,legitimate
+email-281,Team Meeting Reminder,manager@company.com,legitimate
+email-282,Order Delivered,sales@shop.com,legitimate
+email-283,Team Meeting Reminder,manager@company.com,legitimate
+email-284,Order Delivered,sales@shop.com,legitimate
+email-285,Password Expiry Notice,it-support@securemail.com,phishing
+email-286,Team Meeting Reminder,manager@company.com,legitimate
+email-287,Team Meeting Reminder,manager@company.com,legitimate
+email-288,Salary Payment Notification,hr@company.com,legitimate
+email-289,Order Delivered,sales@shop.com,legitimate
+email-290,Order Delivered,sales@shop.com,legitimate
+email-291,Account suspended alert,support@bank-secure.com,phishing
+email-292,BVN Update Required,noreply@fakebank.com,phishing
+email-293,Order Delivered,sales@shop.com,legitimate
+email-294,Monthly Report,admin@company.com,legitimate
+email-295,Monthly Report,admin@company.com,legitimate
+email-296,BVN Update Required,noreply@fakebank.com,phishing
+email-297,Monthly Report,admin@company.com,legitimate
+email-298,Password Expiry Notice,it-support@securemail.com,phishing
+email-299,Monthly Report,admin@company.com,legitimate
+email-300,Order Delivered,sales@shop.com,legitimate
+email-301,BVN Update Required,noreply@fakebank.com,phishing
+email-302,Account suspended alert,support@bank-secure.com,phishing
+email-303,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-304,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-305,Password Expiry Notice,it-support@securemail.com,phishing
+email-306,Salary Payment Notification,hr@company.com,legitimate
+email-307,Monthly Report,admin@company.com,legitimate
+email-308,BVN Update Required,noreply@fakebank.com,phishing
+email-309,Team Meeting Reminder,manager@company.com,legitimate
+email-310,Password Expiry Notice,it-support@securemail.com,phishing
+email-311,Password Expiry Notice,it-support@securemail.com,phishing
+email-312,Team Meeting Reminder,manager@company.com,legitimate
+email-313,Team Meeting Reminder,manager@company.com,legitimate
+email-314,BVN Update Required,noreply@fakebank.com,phishing
+email-315,Monthly Report,admin@company.com,legitimate
+email-316,BVN Update Required,noreply@fakebank.com,phishing
+email-317,Account suspended alert,support@bank-secure.com,phishing
+email-318,Account suspended alert,support@bank-secure.com,phishing
+email-319,Monthly Report,admin@company.com,legitimate
+email-320,Account suspended alert,support@bank-secure.com,phishing
+email-321,Team Meeting Reminder,manager@company.com,legitimate
+email-322,Password Expiry Notice,it-support@securemail.com,phishing
+email-323,BVN Update Required,noreply@fakebank.com,phishing
+email-324,Account suspended alert,support@bank-secure.com,phishing
+email-325,Password Expiry Notice,it-support@securemail.com,phishing
+email-326,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-327,Account suspended alert,support@bank-secure.com,phishing
+email-328,Account suspended alert,support@bank-secure.com,phishing
+email-329,Order Delivered,sales@shop.com,legitimate
+email-330,Salary Payment Notification,hr@company.com,legitimate
+email-331,Monthly Report,admin@company.com,legitimate
+email-332,Order Delivered,sales@shop.com,legitimate
+email-333,Monthly Report,admin@company.com,legitimate
+email-334,Team Meeting Reminder,manager@company.com,legitimate
+email-335,Monthly Report,admin@company.com,legitimate
+email-336,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-337,Team Meeting Reminder,manager@company.com,legitimate
+email-338,Team Meeting Reminder,manager@company.com,legitimate
+email-339,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-340,BVN Update Required,noreply@fakebank.com,phishing
+email-341,Password Expiry Notice,it-support@securemail.com,phishing
+email-342,Account suspended alert,support@bank-secure.com,phishing
+email-343,Monthly Report,admin@company.com,legitimate
+email-344,Order Delivered,sales@shop.com,legitimate
+email-345,Team Meeting Reminder,manager@company.com,legitimate
+email-346,Order Delivered,sales@shop.com,legitimate
+email-347,Password Expiry Notice,it-support@securemail.com,phishing
+email-348,Salary Payment Notification,hr@company.com,legitimate
+email-349,Team Meeting Reminder,manager@company.com,legitimate
+email-350,Salary Payment Notification,hr@company.com,legitimate
+email-351,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-352,Account suspended alert,support@bank-secure.com,phishing
+email-353,Account suspended alert,support@bank-secure.com,phishing
+email-354,Password Expiry Notice,it-support@securemail.com,phishing
+email-355,Order Delivered,sales@shop.com,legitimate
+email-356,Password Expiry Notice,it-support@securemail.com,phishing
+email-357,Monthly Report,admin@company.com,legitimate
+email-358,Salary Payment Notification,hr@company.com,legitimate
+email-359,Salary Payment Notification,hr@company.com,legitimate
+email-360,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-361,Team Meeting Reminder,manager@company.com,legitimate
+email-362,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-363,Salary Payment Notification,hr@company.com,legitimate
+email-364,Order Delivered,sales@shop.com,legitimate
+email-365,BVN Update Required,noreply@fakebank.com,phishing
+email-366,Account suspended alert,support@bank-secure.com,phishing
+email-367,Monthly Report,admin@company.com,legitimate
+email-368,Account suspended alert,support@bank-secure.com,phishing
+email-369,Password Expiry Notice,it-support@securemail.com,phishing
+email-370,Account suspended alert,support@bank-secure.com,phishing
+email-371,BVN Update Required,noreply@fakebank.com,phishing
+email-372,Monthly Report,admin@company.com,legitimate
+email-373,Order Delivered,sales@shop.com,legitimate
+email-374,Monthly Report,admin@company.com,legitimate
+email-375,Team Meeting Reminder,manager@company.com,legitimate
+email-376,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-377,Account suspended alert,support@bank-secure.com,phishing
+email-378,BVN Update Required,noreply@fakebank.com,phishing
+email-379,BVN Update Required,noreply@fakebank.com,phishing
+email-380,Account suspended alert,support@bank-secure.com,phishing
+email-381,Monthly Report,admin@company.com,legitimate
+email-382,Password Expiry Notice,it-support@securemail.com,phishing
+email-383,BVN Update Required,noreply@fakebank.com,phishing
+email-384,Team Meeting Reminder,manager@company.com,legitimate
+email-385,Password Expiry Notice,it-support@securemail.com,phishing
+email-386,BVN Update Required,noreply@fakebank.com,phishing
+email-387,BVN Update Required,noreply@fakebank.com,phishing
+email-388,Order Delivered,sales@shop.com,legitimate
+email-389,Order Delivered,sales@shop.com,legitimate
+email-390,Password Expiry Notice,it-support@securemail.com,phishing
+email-391,Team Meeting Reminder,manager@company.com,legitimate
+email-392,Monthly Report,admin@company.com,legitimate
+email-393,Team Meeting Reminder,manager@company.com,legitimate
+email-394,BVN Update Required,noreply@fakebank.com,phishing
+email-395,BVN Update Required,noreply@fakebank.com,phishing
+email-396,Account suspended alert,support@bank-secure.com,phishing
+email-397,Account suspended alert,support@bank-secure.com,phishing
+email-398,Account suspended alert,support@bank-secure.com,phishing
+email-399,BVN Update Required,noreply@fakebank.com,phishing
+email-400,Order Delivered,sales@shop.com,legitimate
+email-401,BVN Update Required,noreply@fakebank.com,phishing
+email-402,Order Delivered,sales@shop.com,legitimate
+email-403,Salary Payment Notification,hr@company.com,legitimate
+email-404,Monthly Report,admin@company.com,legitimate
+email-405,BVN Update Required,noreply@fakebank.com,phishing
+email-406,BVN Update Required,noreply@fakebank.com,phishing
+email-407,Account suspended alert,support@bank-secure.com,phishing
+email-408,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-409,Password Expiry Notice,it-support@securemail.com,phishing
+email-410,BVN Update Required,noreply@fakebank.com,phishing
+email-411,Salary Payment Notification,hr@company.com,legitimate
+email-412,Order Delivered,sales@shop.com,legitimate
+email-413,BVN Update Required,noreply@fakebank.com,phishing
+email-414,Order Delivered,sales@shop.com,legitimate
+email-415,Salary Payment Notification,hr@company.com,legitimate
+email-416,Monthly Report,admin@company.com,legitimate
+email-417,Account suspended alert,support@bank-secure.com,phishing
+email-418,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-419,Team Meeting Reminder,manager@company.com,legitimate
+email-420,BVN Update Required,noreply@fakebank.com,phishing
+email-421,Team Meeting Reminder,manager@company.com,legitimate
+email-422,Password Expiry Notice,it-support@securemail.com,phishing
+email-423,Account suspended alert,support@bank-secure.com,phishing
+email-424,Monthly Report,admin@company.com,legitimate
+email-425,Account suspended alert,support@bank-secure.com,phishing
+email-426,Salary Payment Notification,hr@company.com,legitimate
+email-427,Account suspended alert,support@bank-secure.com,phishing
+email-428,Account suspended alert,support@bank-secure.com,phishing
+email-429,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-430,Password Expiry Notice,it-support@securemail.com,phishing
+email-431,Monthly Report,admin@company.com,legitimate
+email-432,Salary Payment Notification,hr@company.com,legitimate
+email-433,Password Expiry Notice,it-support@securemail.com,phishing
+email-434,Team Meeting Reminder,manager@company.com,legitimate
+email-435,Salary Payment Notification,hr@company.com,legitimate
+email-436,Order Delivered,sales@shop.com,legitimate
+email-437,BVN Update Required,noreply@fakebank.com,phishing
+email-438,Order Delivered,sales@shop.com,legitimate
+email-439,Password Expiry Notice,it-support@securemail.com,phishing
+email-440,Password Expiry Notice,it-support@securemail.com,phishing
+email-441,Password Expiry Notice,it-support@securemail.com,phishing
+email-442,Salary Payment Notification,hr@company.com,legitimate
+email-443,Account suspended alert,support@bank-secure.com,phishing
+email-444,Account suspended alert,support@bank-secure.com,phishing
+email-445,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-446,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-447,Password Expiry Notice,it-support@securemail.com,phishing
+email-448,Monthly Report,admin@company.com,legitimate
+email-449,Monthly Report,admin@company.com,legitimate
+email-450,Account suspended alert,support@bank-secure.com,phishing
+email-451,Password Expiry Notice,it-support@securemail.com,phishing
+email-452,Salary Payment Notification,hr@company.com,legitimate
+email-453,Order Delivered,sales@shop.com,legitimate
+email-454,BVN Update Required,noreply@fakebank.com,phishing
+email-455,Team Meeting Reminder,manager@company.com,legitimate
+email-456,Salary Payment Notification,hr@company.com,legitimate
+email-457,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-458,BVN Update Required,noreply@fakebank.com,phishing
+email-459,Password Expiry Notice,it-support@securemail.com,phishing
+email-460,Password Expiry Notice,it-support@securemail.com,phishing
+email-461,Monthly Report,admin@company.com,legitimate
+email-462,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-463,Account suspended alert,support@bank-secure.com,phishing
+email-464,Order Delivered,sales@shop.com,legitimate
+email-465,Salary Payment Notification,hr@company.com,legitimate
+email-466,BVN Update Required,noreply@fakebank.com,phishing
+email-467,Monthly Report,admin@company.com,legitimate
+email-468,Salary Payment Notification,hr@company.com,legitimate
+email-469,Salary Payment Notification,hr@company.com,legitimate
+email-470,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-471,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-472,Salary Payment Notification,hr@company.com,legitimate
+email-473,BVN Update Required,noreply@fakebank.com,phishing
+email-474,BVN Update Required,noreply@fakebank.com,phishing
+email-475,BVN Update Required,noreply@fakebank.com,phishing
+email-476,Monthly Report,admin@company.com,legitimate
+email-477,Password Expiry Notice,it-support@securemail.com,phishing
+email-478,Monthly Report,admin@company.com,legitimate
+email-479,Account suspended alert,support@bank-secure.com,phishing
+email-480,Monthly Report,admin@company.com,legitimate
+email-481,Team Meeting Reminder,manager@company.com,legitimate
+email-482,Monthly Report,admin@company.com,legitimate
+email-483,BVN Update Required,noreply@fakebank.com,phishing
+email-484,Salary Payment Notification,hr@company.com,legitimate
+email-485,Team Meeting Reminder,manager@company.com,legitimate
+email-486,Account suspended alert,support@bank-secure.com,phishing
+email-487,Team Meeting Reminder,manager@company.com,legitimate
+email-488,Team Meeting Reminder,manager@company.com,legitimate
+email-489,Password Expiry Notice,it-support@securemail.com,phishing
+email-490,Password Expiry Notice,it-support@securemail.com,phishing
+email-491,Order Delivered,sales@shop.com,legitimate
+email-492,Team Meeting Reminder,manager@company.com,legitimate
+email-493,BVN Update Required,noreply@fakebank.com,phishing
+email-494,Salary Payment Notification,hr@company.com,legitimate
+email-495,Password Expiry Notice,it-support@securemail.com,phishing
+email-496,Monthly Report,admin@company.com,legitimate
+email-497,Password Expiry Notice,it-support@securemail.com,phishing
+email-498,Order Delivered,sales@shop.com,legitimate
+email-499,BVN Update Required,noreply@fakebank.com,phishing
+email-500,Salary Payment Notification,hr@company.com,legitimate
+email-501,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-502,Team Meeting Reminder,manager@company.com,legitimate
+email-503,Team Meeting Reminder,manager@company.com,legitimate
+email-504,Order Delivered,sales@shop.com,legitimate
+email-505,Monthly Report,admin@company.com,legitimate
+email-506,Salary Payment Notification,hr@company.com,legitimate
+email-507,Salary Payment Notification,hr@company.com,legitimate
+email-508,Order Delivered,sales@shop.com,legitimate
+email-509,Team Meeting Reminder,manager@company.com,legitimate
+email-510,Account suspended alert,support@bank-secure.com,phishing
+email-511,Order Delivered,sales@shop.com,legitimate
+email-512,Password Expiry Notice,it-support@securemail.com,phishing
+email-513,Order Delivered,sales@shop.com,legitimate
+email-514,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-515,Salary Payment Notification,hr@company.com,legitimate
+email-516,BVN Update Required,noreply@fakebank.com,phishing
+email-517,Account suspended alert,support@bank-secure.com,phishing
+email-518,Order Delivered,sales@shop.com,legitimate
+email-519,Password Expiry Notice,it-support@securemail.com,phishing
+email-520,Password Expiry Notice,it-support@securemail.com,phishing
+email-521,Monthly Report,admin@company.com,legitimate
+email-522,Team Meeting Reminder,manager@company.com,legitimate
+email-523,Salary Payment Notification,hr@company.com,legitimate
+email-524,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-525,Order Delivered,sales@shop.com,legitimate
+email-526,Account suspended alert,support@bank-secure.com,phishing
+email-527,Monthly Report,admin@company.com,legitimate
+email-528,Order Delivered,sales@shop.com,legitimate
+email-529,Monthly Report,admin@company.com,legitimate
+email-530,Team Meeting Reminder,manager@company.com,legitimate
+email-531,Account suspended alert,support@bank-secure.com,phishing
+email-532,Team Meeting Reminder,manager@company.com,legitimate
+email-533,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-534,Password Expiry Notice,it-support@securemail.com,phishing
+email-535,Team Meeting Reminder,manager@company.com,legitimate
+email-536,BVN Update Required,noreply@fakebank.com,phishing
+email-537,Team Meeting Reminder,manager@company.com,legitimate
+email-538,Password Expiry Notice,it-support@securemail.com,phishing
+email-539,Monthly Report,admin@company.com,legitimate
+email-540,Order Delivered,sales@shop.com,legitimate
+email-541,Monthly Report,admin@company.com,legitimate
+email-542,Team Meeting Reminder,manager@company.com,legitimate
+email-543,Monthly Report,admin@company.com,legitimate
+email-544,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-545,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-546,Password Expiry Notice,it-support@securemail.com,phishing
+email-547,Account suspended alert,support@bank-secure.com,phishing
+email-548,Order Delivered,sales@shop.com,legitimate
+email-549,Salary Payment Notification,hr@company.com,legitimate
+email-550,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-551,BVN Update Required,noreply@fakebank.com,phishing
+email-552,Team Meeting Reminder,manager@company.com,legitimate
+email-553,Order Delivered,sales@shop.com,legitimate
+email-554,Salary Payment Notification,hr@company.com,legitimate
+email-555,BVN Update Required,noreply@fakebank.com,phishing
+email-556,BVN Update Required,noreply@fakebank.com,phishing
+email-557,Salary Payment Notification,hr@company.com,legitimate
+email-558,Salary Payment Notification,hr@company.com,legitimate
+email-559,Monthly Report,admin@company.com,legitimate
+email-560,Password Expiry Notice,it-support@securemail.com,phishing
+email-561,Password Expiry Notice,it-support@securemail.com,phishing
+email-562,BVN Update Required,noreply@fakebank.com,phishing
+email-563,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-564,Team Meeting Reminder,manager@company.com,legitimate
+email-565,Team Meeting Reminder,manager@company.com,legitimate
+email-566,Account suspended alert,support@bank-secure.com,phishing
+email-567,BVN Update Required,noreply@fakebank.com,phishing
+email-568,Monthly Report,admin@company.com,legitimate
+email-569,Account suspended alert,support@bank-secure.com,phishing
+email-570,BVN Update Required,noreply@fakebank.com,phishing
+email-571,Password Expiry Notice,it-support@securemail.com,phishing
+email-572,Salary Payment Notification,hr@company.com,legitimate
+email-573,Monthly Report,admin@company.com,legitimate
+email-574,Account suspended alert,support@bank-secure.com,phishing
+email-575,Salary Payment Notification,hr@company.com,legitimate
+email-576,Order Delivered,sales@shop.com,legitimate
+email-577,Salary Payment Notification,hr@company.com,legitimate
+email-578,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-579,Account suspended alert,support@bank-secure.com,phishing
+email-580,Account suspended alert,support@bank-secure.com,phishing
+email-581,BVN Update Required,noreply@fakebank.com,phishing
+email-582,Salary Payment Notification,hr@company.com,legitimate
+email-583,Order Delivered,sales@shop.com,legitimate
+email-584,Monthly Report,admin@company.com,legitimate
+email-585,Salary Payment Notification,hr@company.com,legitimate
+email-586,Password Expiry Notice,it-support@securemail.com,phishing
+email-587,Account suspended alert,support@bank-secure.com,phishing
+email-588,Salary Payment Notification,hr@company.com,legitimate
+email-589,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-590,Account suspended alert,support@bank-secure.com,phishing
+email-591,Salary Payment Notification,hr@company.com,legitimate
+email-592,Account suspended alert,support@bank-secure.com,phishing
+email-593,Account suspended alert,support@bank-secure.com,phishing
+email-594,Account suspended alert,support@bank-secure.com,phishing
+email-595,Monthly Report,admin@company.com,legitimate
+email-596,BVN Update Required,noreply@fakebank.com,phishing
+email-597,Password Expiry Notice,it-support@securemail.com,phishing
+email-598,Order Delivered,sales@shop.com,legitimate
+email-599,BVN Update Required,noreply@fakebank.com,phishing
+email-600,BVN Update Required,noreply@fakebank.com,phishing
+email-601,Password Expiry Notice,it-support@securemail.com,phishing
+email-602,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-603,Monthly Report,admin@company.com,legitimate
+email-604,BVN Update Required,noreply@fakebank.com,phishing
+email-605,BVN Update Required,noreply@fakebank.com,phishing
+email-606,BVN Update Required,noreply@fakebank.com,phishing
+email-607,BVN Update Required,noreply@fakebank.com,phishing
+email-608,Monthly Report,admin@company.com,legitimate
+email-609,BVN Update Required,noreply@fakebank.com,phishing
+email-610,Salary Payment Notification,hr@company.com,legitimate
+email-611,Monthly Report,admin@company.com,legitimate
+email-612,Password Expiry Notice,it-support@securemail.com,phishing
+email-613,Password Expiry Notice,it-support@securemail.com,phishing
+email-614,BVN Update Required,noreply@fakebank.com,phishing
+email-615,Monthly Report,admin@company.com,legitimate
+email-616,Account suspended alert,support@bank-secure.com,phishing
+email-617,BVN Update Required,noreply@fakebank.com,phishing
+email-618,Monthly Report,admin@company.com,legitimate
+email-619,Account suspended alert,support@bank-secure.com,phishing
+email-620,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-621,BVN Update Required,noreply@fakebank.com,phishing
+email-622,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-623,Order Delivered,sales@shop.com,legitimate
+email-624,Password Expiry Notice,it-support@securemail.com,phishing
+email-625,Password Expiry Notice,it-support@securemail.com,phishing
+email-626,Salary Payment Notification,hr@company.com,legitimate
+email-627,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-628,Monthly Report,admin@company.com,legitimate
+email-629,Order Delivered,sales@shop.com,legitimate
+email-630,Order Delivered,sales@shop.com,legitimate
+email-631,Team Meeting Reminder,manager@company.com,legitimate
+email-632,Team Meeting Reminder,manager@company.com,legitimate
+email-633,Account suspended alert,support@bank-secure.com,phishing
+email-634,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-635,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-636,Salary Payment Notification,hr@company.com,legitimate
+email-637,Monthly Report,admin@company.com,legitimate
+email-638,BVN Update Required,noreply@fakebank.com,phishing
+email-639,BVN Update Required,noreply@fakebank.com,phishing
+email-640,Monthly Report,admin@company.com,legitimate
+email-641,Team Meeting Reminder,manager@company.com,legitimate
+email-642,Monthly Report,admin@company.com,legitimate
+email-643,BVN Update Required,noreply@fakebank.com,phishing
+email-644,Account suspended alert,support@bank-secure.com,phishing
+email-645,Password Expiry Notice,it-support@securemail.com,phishing
+email-646,Salary Payment Notification,hr@company.com,legitimate
+email-647,BVN Update Required,noreply@fakebank.com,phishing
+email-648,Salary Payment Notification,hr@company.com,legitimate
+email-649,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-650,Order Delivered,sales@shop.com,legitimate
+email-651,Password Expiry Notice,it-support@securemail.com,phishing
+email-652,Salary Payment Notification,hr@company.com,legitimate
+email-653,Team Meeting Reminder,manager@company.com,legitimate
+email-654,Account suspended alert,support@bank-secure.com,phishing
+email-655,Salary Payment Notification,hr@company.com,legitimate
+email-656,Team Meeting Reminder,manager@company.com,legitimate
+email-657,Account suspended alert,support@bank-secure.com,phishing
+email-658,Order Delivered,sales@shop.com,legitimate
+email-659,Team Meeting Reminder,manager@company.com,legitimate
+email-660,BVN Update Required,noreply@fakebank.com,phishing
+email-661,BVN Update Required,noreply@fakebank.com,phishing
+email-662,BVN Update Required,noreply@fakebank.com,phishing
+email-663,Order Delivered,sales@shop.com,legitimate
+email-664,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-665,Account suspended alert,support@bank-secure.com,phishing
+email-666,Order Delivered,sales@shop.com,legitimate
+email-667,Team Meeting Reminder,manager@company.com,legitimate
+email-668,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-669,Account suspended alert,support@bank-secure.com,phishing
+email-670,Order Delivered,sales@shop.com,legitimate
+email-671,Password Expiry Notice,it-support@securemail.com,phishing
+email-672,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-673,Account suspended alert,support@bank-secure.com,phishing
+email-674,Order Delivered,sales@shop.com,legitimate
+email-675,Monthly Report,admin@company.com,legitimate
+email-676,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-677,Team Meeting Reminder,manager@company.com,legitimate
+email-678,Salary Payment Notification,hr@company.com,legitimate
+email-679,BVN Update Required,noreply@fakebank.com,phishing
+email-680,Salary Payment Notification,hr@company.com,legitimate
+email-681,Team Meeting Reminder,manager@company.com,legitimate
+email-682,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-683,Monthly Report,admin@company.com,legitimate
+email-684,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-685,Salary Payment Notification,hr@company.com,legitimate
+email-686,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-687,Team Meeting Reminder,manager@company.com,legitimate
+email-688,Monthly Report,admin@company.com,legitimate
+email-689,Password Expiry Notice,it-support@securemail.com,phishing
+email-690,Team Meeting Reminder,manager@company.com,legitimate
+email-691,BVN Update Required,noreply@fakebank.com,phishing
+email-692,BVN Update Required,noreply@fakebank.com,phishing
+email-693,Salary Payment Notification,hr@company.com,legitimate
+email-694,Team Meeting Reminder,manager@company.com,legitimate
+email-695,BVN Update Required,noreply@fakebank.com,phishing
+email-696,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-697,Team Meeting Reminder,manager@company.com,legitimate
+email-698,BVN Update Required,noreply@fakebank.com,phishing
+email-699,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-700,Salary Payment Notification,hr@company.com,legitimate
+email-701,Salary Payment Notification,hr@company.com,legitimate
+email-702,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-703,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-704,Salary Payment Notification,hr@company.com,legitimate
+email-705,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-706,Team Meeting Reminder,manager@company.com,legitimate
+email-707,BVN Update Required,noreply@fakebank.com,phishing
+email-708,Team Meeting Reminder,manager@company.com,legitimate
+email-709,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-710,Account suspended alert,support@bank-secure.com,phishing
+email-711,Order Delivered,sales@shop.com,legitimate
+email-712,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-713,Password Expiry Notice,it-support@securemail.com,phishing
+email-714,Monthly Report,admin@company.com,legitimate
+email-715,Order Delivered,sales@shop.com,legitimate
+email-716,BVN Update Required,noreply@fakebank.com,phishing
+email-717,Monthly Report,admin@company.com,legitimate
+email-718,Salary Payment Notification,hr@company.com,legitimate
+email-719,Password Expiry Notice,it-support@securemail.com,phishing
+email-720,Salary Payment Notification,hr@company.com,legitimate
+email-721,Account suspended alert,support@bank-secure.com,phishing
+email-722,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-723,Salary Payment Notification,hr@company.com,legitimate
+email-724,Account suspended alert,support@bank-secure.com,phishing
+email-725,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-726,Account suspended alert,support@bank-secure.com,phishing
+email-727,Order Delivered,sales@shop.com,legitimate
+email-728,BVN Update Required,noreply@fakebank.com,phishing
+email-729,BVN Update Required,noreply@fakebank.com,phishing
+email-730,Team Meeting Reminder,manager@company.com,legitimate
+email-731,Team Meeting Reminder,manager@company.com,legitimate
+email-732,Order Delivered,sales@shop.com,legitimate
+email-733,BVN Update Required,noreply@fakebank.com,phishing
+email-734,Password Expiry Notice,it-support@securemail.com,phishing
+email-735,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-736,Order Delivered,sales@shop.com,legitimate
+email-737,Salary Payment Notification,hr@company.com,legitimate
+email-738,Team Meeting Reminder,manager@company.com,legitimate
+email-739,Salary Payment Notification,hr@company.com,legitimate
+email-740,Account suspended alert,support@bank-secure.com,phishing
+email-741,Monthly Report,admin@company.com,legitimate
+email-742,BVN Update Required,noreply@fakebank.com,phishing
+email-743,BVN Update Required,noreply@fakebank.com,phishing
+email-744,Monthly Report,admin@company.com,legitimate
+email-745,Salary Payment Notification,hr@company.com,legitimate
+email-746,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-747,Account suspended alert,support@bank-secure.com,phishing
+email-748,Team Meeting Reminder,manager@company.com,legitimate
+email-749,Team Meeting Reminder,manager@company.com,legitimate
+email-750,Monthly Report,admin@company.com,legitimate
+email-751,Salary Payment Notification,hr@company.com,legitimate
+email-752,Salary Payment Notification,hr@company.com,legitimate
+email-753,Monthly Report,admin@company.com,legitimate
+email-754,Team Meeting Reminder,manager@company.com,legitimate
+email-755,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-756,Account suspended alert,support@bank-secure.com,phishing
+email-757,Team Meeting Reminder,manager@company.com,legitimate
+email-758,Account suspended alert,support@bank-secure.com,phishing
+email-759,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-760,BVN Update Required,noreply@fakebank.com,phishing
+email-761,Team Meeting Reminder,manager@company.com,legitimate
+email-762,BVN Update Required,noreply@fakebank.com,phishing
+email-763,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-764,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-765,Password Expiry Notice,it-support@securemail.com,phishing
+email-766,Account suspended alert,support@bank-secure.com,phishing
+email-767,Monthly Report,admin@company.com,legitimate
+email-768,Team Meeting Reminder,manager@company.com,legitimate
+email-769,Password Expiry Notice,it-support@securemail.com,phishing
+email-770,BVN Update Required,noreply@fakebank.com,phishing
+email-771,Account suspended alert,support@bank-secure.com,phishing
+email-772,Monthly Report,admin@company.com,legitimate
+email-773,Order Delivered,sales@shop.com,legitimate
+email-774,Account suspended alert,support@bank-secure.com,phishing
+email-775,Password Expiry Notice,it-support@securemail.com,phishing
+email-776,Salary Payment Notification,hr@company.com,legitimate
+email-777,Account suspended alert,support@bank-secure.com,phishing
+email-778,Order Delivered,sales@shop.com,legitimate
+email-779,Salary Payment Notification,hr@company.com,legitimate
+email-780,Team Meeting Reminder,manager@company.com,legitimate
+email-781,Team Meeting Reminder,manager@company.com,legitimate
+email-782,Order Delivered,sales@shop.com,legitimate
+email-783,Team Meeting Reminder,manager@company.com,legitimate
+email-784,Password Expiry Notice,it-support@securemail.com,phishing
+email-785,Password Expiry Notice,it-support@securemail.com,phishing
+email-786,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-787,Account suspended alert,support@bank-secure.com,phishing
+email-788,Password Expiry Notice,it-support@securemail.com,phishing
+email-789,Account suspended alert,support@bank-secure.com,phishing
+email-790,Order Delivered,sales@shop.com,legitimate
+email-791,Team Meeting Reminder,manager@company.com,legitimate
+email-792,Password Expiry Notice,it-support@securemail.com,phishing
+email-793,Monthly Report,admin@company.com,legitimate
+email-794,Password Expiry Notice,it-support@securemail.com,phishing
+email-795,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-796,Congratulations Winner!,promo@lottery-ng.com,phishing
+email-797,BVN Update Required,noreply@fakebank.com,phishing
+email-798,BVN Update Required,noreply@fakebank.com,phishing
+email-799,Order Delivered,sales@shop.com,legitimate
+email-800,Monthly Report,admin@company.com,legitimate

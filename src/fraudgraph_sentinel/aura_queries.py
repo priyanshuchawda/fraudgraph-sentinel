@@ -171,6 +171,46 @@ LIMIT $limit
         ),
         expected_output="Destination accounts ranked by total fraud amount.",
     ),
+    QueryTemplate(
+        name="risk_indicator_overview",
+        description="Summarize optional risk indicators across transactions, email samples, and URL samples.",
+        parameters={"limit": 20},
+        cypher="""
+MATCH (item)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator)
+WITH indicator, labels(item) AS labels
+UNWIND labels AS label
+RETURN indicator.name AS riskIndicator,
+       label AS sampleType,
+       count(*) AS linkedItems
+ORDER BY riskIndicator ASC, linkedItems DESC
+LIMIT $limit
+""",
+        example_questions=(
+            "Summarize the risk indicators across the cyber graph.",
+            "Which risk indicators appear across transactions, emails, and URLs?",
+            "Show optional ScamChain risk indicator coverage.",
+        ),
+        expected_output="Risk indicators grouped by linked graph entity label.",
+    ),
+    QueryTemplate(
+        name="shared_risk_indicator_context",
+        description="Show how one risk indicator appears across separate synthetic datasets without claiming causality.",
+        parameters={"indicator": "PaymentKeywordSignal", "limit": 10},
+        cypher="""
+MATCH (item)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator {name: $indicator})
+RETURN indicator.name AS riskIndicator,
+       labels(item) AS itemLabels,
+       coalesce(item.transactionId, item.emailId, item.urlId) AS itemId,
+       coalesce(item.riskText, item.subject, item.domain) AS context
+LIMIT $limit
+""",
+        example_questions=(
+            "Where does PaymentKeywordSignal appear in the graph?",
+            "Show shared risk context across datasets.",
+            "Which graph entities share this risk indicator?",
+        ),
+        expected_output="Separate synthetic graph entities connected to a chosen risk indicator.",
+    ),
 )
 
 for template in CORE_QUERY_TEMPLATES:

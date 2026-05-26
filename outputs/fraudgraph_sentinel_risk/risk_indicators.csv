@@ -1,0 +1,13 @@
+name,description
+ContainsLink,Email sample contains a link.
+FraudTransaction,Transaction is labeled fraud in the synthetic transaction dataset.
+HasAttachment,Email sample contains an attachment.
+HighAmountTransfer,Fraud transaction is a high-value transfer or cash-out.
+InsecureHTTP,URL sample does not use HTTPS.
+PasswordInputSignal,URL page has a password input signal.
+PaymentKeywordSignal,"URL page includes bank, payment, or crypto keyword signals."
+PhishingEmailLabel,Email sample is labeled phishing in the synthetic email dataset.
+RepeatedFraudDestination,Destination account receives repeated fraud transactions.
+SuspiciousUrlLabel,URL sample is labeled suspicious/phishing in the URL dataset.
+UrgentLanguage,Email sample has an urgency flag.
+ZeroedOriginBalance,Transaction leaves the origin account balance at zero.
