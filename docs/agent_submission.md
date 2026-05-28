@@ -95,6 +95,8 @@ https://github.com/priyanshuchawda/fraudgraph-sentinel
 Which destination accounts received multiple fraudulent transfers?
 ```
 
+Use `docs/hackathon-thread-reply.md` as the final copy-paste submission reply after screenshots are captured.
+
 ## Optional Agent Link
 
 Not published. Aura Console demo is sufficient for the free-path submission unless public publishing is separately approved after checking pricing or credits.
