@@ -2,6 +2,15 @@
 
 Use these steps after the compact graph has been imported into the existing AuraDB Free instance.
 
+Official Aura Agent docs checked on 2026-05-29:
+
+- Aura Agent supports Cypher Template, Similarity Search, and Text2Cypher tools.
+- Internal agents are free to use; external agents incur charges.
+- Import Agent can create an agent from JSON.
+- Internal agents cannot also be enabled as MCP servers.
+
+Reference: https://neo4j.com/docs/aura/aura-agent/
+
 ## Agent
 
 Name: `FraudGraph Sentinel`
@@ -75,6 +84,8 @@ If configuring manually, create these Cypher Template tools:
 Enable Text2Cypher with the read-only system instructions above.
 
 Skip Similarity Search for the zero-cost path unless embeddings are already configured and approved.
+
+If the import flow is unavailable, use `docs/create-with-ai-prompt.md` in the **Create with AI** dialog, then manually compare the generated tools against `agent_tools.json`.
 
 The optional risk-indicator tools are safe to use after `outputs/fraudgraph_sentinel_risk` has been imported. They connect separate synthetic datasets by shared risk indicators only; do not present them as causal attack chains.
 

@@ -201,5 +201,7 @@ The scripts print only `PRESENT` or `MISSING` for environment checks. They do no
 ## Submission Materials
 
 - [Aura Agent setup guide](docs/aura-agent-setup.md)
+- [Create with AI fallback prompt](docs/create-with-ai-prompt.md)
 - [Demo script](docs/demo-script.md)
 - [Submission draft](docs/agent_submission.md)
+- [Hackathon thread reply draft](docs/hackathon-thread-reply.md)
