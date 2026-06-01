@@ -55,19 +55,23 @@ Use for questions like "Show the highest-value suspicious fraud paths."
 Purpose: given an accountId, show nearby incoming or outgoing fraudulent transactions and counterparties.
 Use for questions like "Explain the suspicious neighborhood around this account."
 
-5. fraud_type_comparison
+5. destination_fraud_profile
+Purpose: given a destination accountId, create an investigation brief with fraud count, total amount, source accounts, transaction types, risk indicators, and suspiciousness summary.
+Use for questions like "Create a fraud investigation brief for destination account C668046170."
+
+6. fraud_type_comparison
 Purpose: compare fraudulent TRANSFER and CASH_OUT activity by count, source accounts, destination accounts, total amount, and average amount.
 Use for questions like "Compare fraudulent TRANSFER and CASH_OUT activity."
 
-6. fraud_concentration
+7. fraud_concentration
 Purpose: identify destination accounts with concentrated fraud exposure by received fraud amount and repeated fraud count.
 Use for questions like "Where is fraud amount most concentrated?"
 
-7. risk_indicator_overview
+8. risk_indicator_overview
 Purpose: summarize optional risk indicators across transactions, email samples, and URL samples.
 Use for questions like "Which risk indicators appear across the cyber graph?"
 
-8. shared_risk_indicator_context
+9. shared_risk_indicator_context
 Purpose: show how one risk indicator appears across separate synthetic datasets without claiming causality.
 Use for questions like "Where does PaymentKeywordSignal appear in the graph?"
 

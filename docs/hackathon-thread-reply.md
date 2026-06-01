@@ -6,7 +6,7 @@ Use this as the submission reply after adding screenshots.
 
 **Agent Name:** FraudGraph Sentinel
 
-**What it does:** FraudGraph Sentinel is a Neo4j Aura Agent for investigating synthetic cyber-fraud transaction patterns. It reasons over account-to-transaction-to-account paths, repeated fraudulent destinations, high-value fraud movements, fraud-type patterns, account neighborhoods, and shared risk indicators.
+**What it does:** FraudGraph Sentinel is a Neo4j Aura Agent for investigating synthetic cyber-fraud transaction patterns. It reasons over account-to-transaction-to-account paths, repeated fraudulent destinations, high-value fraud movements, fraud-type patterns, account neighborhoods, and shared risk indicators. The demo uses a two-step investigation flow: the agent first finds repeated fraudulent destination accounts, then profiles one destination account as a case brief with source accounts, transaction types, amounts, and risk indicators.
 
 **Dataset and why a graph fits:** The project uses a synthetic financial transaction fraud dataset with 6,362,620 source rows. The AuraDB Free graph keeps all 8,213 fraud rows plus a deterministic 5,000-row non-fraud sample. Fraud is relational, so a graph is a better fit than flat rows: it reveals repeated recipients, source-to-transaction-to-destination paths, concentrated fraud exposure, and connected risk signals.
 
@@ -29,6 +29,7 @@ Use this as the submission reply after adding screenshots.
 - `repeated_fraud_destinations`
 - `high_value_fraud_paths`
 - `account_fraud_neighborhood`
+- `destination_fraud_profile`
 - `fraud_type_comparison`
 - `fraud_concentration`
 - `risk_indicator_overview`
@@ -37,6 +38,7 @@ Use this as the submission reply after adding screenshots.
 **Demo questions:**
 
 - Which destination accounts received multiple fraudulent transfers?
+- Create a fraud investigation brief for destination account C668046170.
 - Compare fraudulent TRANSFER and CASH_OUT activity.
 - Show the highest-value suspicious fraud paths.
 - Which risk indicators appear across the cyber graph?
@@ -48,6 +50,7 @@ Use this as the submission reply after adding screenshots.
 **Screenshots/demo:**
 
 - Aura Console graph screenshot: `[add screenshot]`
-- Aura Agent response screenshot or short demo: `[add screenshot/demo link]`
+- Repeated destinations agent screenshot: `[add screenshot]`
+- Destination fraud profile/case brief screenshot: `[add screenshot]`
 
 **Agent link:** Not published. The project uses the free/internal Aura Agent path; external publishing was intentionally skipped to avoid paid deployment costs.

@@ -18,6 +18,7 @@ def test_agent_tool_specs_include_required_challenge_tools():
         "repeated_fraud_destinations",
         "high_value_fraud_paths",
         "account_fraud_neighborhood",
+        "destination_fraud_profile",
         "fraud_type_comparison",
         "fraud_concentration",
         "risk_indicator_overview",

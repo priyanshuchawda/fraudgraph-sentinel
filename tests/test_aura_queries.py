@@ -12,6 +12,7 @@ def test_core_query_templates_are_read_only_and_named():
         "repeated_fraud_destinations",
         "high_value_fraud_paths",
         "account_fraud_neighborhood",
+        "destination_fraud_profile",
         "fraud_type_comparison",
         "fraud_concentration",
         "risk_indicator_overview",
@@ -21,6 +22,18 @@ def test_core_query_templates_are_read_only_and_named():
         assert_read_only_cypher(template.cypher)
         assert template.description
         assert template.example_questions
+
+
+def test_destination_fraud_profile_supports_case_brief():
+    template = next(
+        template
+        for template in CORE_QUERY_TEMPLATES
+        if template.name == "destination_fraud_profile"
+    )
+
+    assert template.parameters["accountId"] == "C668046170"
+    assert "HAS_RISK_INDICATOR" in template.cypher
+    assert "investigationSummary" in template.cypher
 
 
 def test_read_only_guard_rejects_write_or_admin_cypher():

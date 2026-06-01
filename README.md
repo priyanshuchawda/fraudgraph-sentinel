@@ -86,6 +86,7 @@ Prepared Cypher Template tools:
 - `repeated_fraud_destinations`
 - `high_value_fraud_paths`
 - `account_fraud_neighborhood`
+- `destination_fraud_profile`
 - `fraud_type_comparison`
 - `fraud_concentration`
 - `risk_indicator_overview`
@@ -109,6 +110,10 @@ Show the highest-value suspicious fraud paths.
 
 ```text
 Why is this repeated destination pattern suspicious?
+```
+
+```text
+Create a fraud investigation brief for destination account C668046170.
 ```
 
 ## Local Development
