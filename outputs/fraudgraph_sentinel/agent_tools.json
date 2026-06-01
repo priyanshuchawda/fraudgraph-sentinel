@@ -62,6 +62,22 @@
     "expected_output": "Fraud transactions connected to a specific account and counterparties."
   },
   {
+    "name": "destination_fraud_profile",
+    "type": "cypher_template",
+    "description": "Build an investigation brief for one repeated fraud destination account, including source accounts, transaction types, amounts, and risk indicators.",
+    "parameters": {
+      "accountId": "C668046170",
+      "limit": 25
+    },
+    "cypher": "MATCH (:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account {accountId: $accountId})\nMATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)\nOPTIONAL MATCH (tx)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator)\nWITH dest,\n     tx,\n     kind,\n     collect(DISTINCT indicator.name) AS riskIndicators\nORDER BY tx.amount DESC\nWITH dest,\n     collect({\n       transactionId: tx.transactionId,\n       transactionType: kind.name,\n       amount: round(tx.amount, 2),\n       flaggedByRule: tx.isFlaggedFraud,\n       riskSummary: tx.riskText,\n       riskIndicators: riskIndicators\n     })[0..$limit] AS transactions,\n     count(tx) AS fraudTransactions,\n     sum(tx.amount) AS totalFraudAmount,\n     collect(DISTINCT kind.name) AS transactionTypes\nMATCH (origin:Account)-[:SENT]->(fraudTx:Transaction {isFraud: true})-[:TO]->(dest)\nWITH dest,\n     fraudTransactions,\n     totalFraudAmount,\n     transactionTypes,\n     transactions,\n     collect(DISTINCT origin.accountId)[0..10] AS sourceAccounts\nRETURN dest.accountId AS destinationAccount,\n       fraudTransactions,\n       round(totalFraudAmount, 2) AS totalFraudAmount,\n       transactionTypes,\n       sourceAccounts,\n       transactions,\n       CASE\n         WHEN fraudTransactions >= 2 THEN 'Suspicious repeated destination: this account received multiple fraudulent transactions from different source accounts in the synthetic graph.'\n         ELSE 'Fraud-linked destination: this account received at least one fraudulent transaction in the synthetic graph.'\n       END AS investigationSummary",
+    "example_questions": [
+      "Create a fraud investigation brief for destination account C668046170.",
+      "Why is C668046170 suspicious?",
+      "Profile this repeated fraud destination account."
+    ],
+    "expected_output": "Case-style destination account brief with fraud totals, sources, transaction details, and risk indicators."
+  },
+  {
     "name": "fraud_type_comparison",
     "type": "cypher_template",
     "description": "Compare fraudulent TRANSFER and CASH_OUT activity patterns.",
@@ -126,7 +142,7 @@
     "name": "natural_language_graph_questions",
     "type": "text2cypher",
     "description": "Read-only flexible fallback for ad-hoc graph questions not covered by templates.",
-    "instructions": "You are FraudGraph Sentinel, a cyber-fraud investigation assistant for a synthetic dataset.\nUse the graph schema exactly:\n- (:Account {accountId})\n- (:Transaction {transactionId, step, amount, isFraud, isFlaggedFraud, riskText})\n- (:TransactionType {name})\n- (:FraudLabel {name})\n- (:Account)-[:SENT]->(:Transaction)-[:TO]->(:Account)\n- (:Transaction)-[:HAS_TYPE]->(:TransactionType)\n- (:Transaction)-[:HAS_LABEL]->(:FraudLabel)\n\nGenerate read-only analytical Cypher only. Never generate CREATE, MERGE, DELETE,\nDETACH DELETE, SET, REMOVE, DROP, LOAD CSV, CALL dbms, or administration commands.\nPrefer the provided Cypher Template tools for known fraud investigations. Use\nText2Cypher only for extra ad-hoc questions. Always state that the dataset is\nsynthetic and do not claim real criminal activity."
+    "instructions": "You are FraudGraph Sentinel, a cyber-fraud investigation assistant for a synthetic dataset.\nUse the graph schema exactly:\n- (:Account {accountId})\n- (:Transaction {transactionId, step, amount, isFraud, isFlaggedFraud, riskText})\n- (:TransactionType {name})\n- (:FraudLabel {name})\n- (:RiskIndicator {name, description})\n- (:EmailSample {emailId, subject, sender, label})\n- (:URLSample {urlId, url, domain, label})\n- (:Account)-[:SENT]->(:Transaction)-[:TO]->(:Account)\n- (:Transaction)-[:HAS_TYPE]->(:TransactionType)\n- (:Transaction)-[:HAS_LABEL]->(:FraudLabel)\n- (:Transaction)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)\n- (:EmailSample)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)\n- (:URLSample)-[:HAS_RISK_INDICATOR]->(:RiskIndicator)\n\nGenerate read-only analytical Cypher only. Never generate CREATE, MERGE, DELETE,\nDETACH DELETE, SET, REMOVE, DROP, LOAD CSV, CALL dbms, or administration commands.\nPrefer the provided Cypher Template tools for known fraud investigations. Use\nText2Cypher only for extra ad-hoc questions. Always state that the dataset is\nsynthetic and do not claim real criminal activity."
   },
   {
     "name": "Similar fraud case search",

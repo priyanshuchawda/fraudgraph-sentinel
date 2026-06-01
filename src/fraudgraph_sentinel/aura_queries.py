@@ -130,6 +130,59 @@ LIMIT $limit
         expected_output="Fraud transactions connected to a specific account and counterparties.",
     ),
     QueryTemplate(
+        name="destination_fraud_profile",
+        description=(
+            "Build an investigation brief for one repeated fraud destination account, "
+            "including source accounts, transaction types, amounts, and risk indicators."
+        ),
+        parameters={"accountId": "C668046170", "limit": 25},
+        cypher="""
+MATCH (:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account {accountId: $accountId})
+MATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)
+OPTIONAL MATCH (tx)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator)
+WITH dest,
+     tx,
+     kind,
+     collect(DISTINCT indicator.name) AS riskIndicators
+ORDER BY tx.amount DESC
+WITH dest,
+     collect({
+       transactionId: tx.transactionId,
+       transactionType: kind.name,
+       amount: round(tx.amount, 2),
+       flaggedByRule: tx.isFlaggedFraud,
+       riskSummary: tx.riskText,
+       riskIndicators: riskIndicators
+     })[0..$limit] AS transactions,
+     count(tx) AS fraudTransactions,
+     sum(tx.amount) AS totalFraudAmount,
+     collect(DISTINCT kind.name) AS transactionTypes
+MATCH (origin:Account)-[:SENT]->(fraudTx:Transaction {isFraud: true})-[:TO]->(dest)
+WITH dest,
+     fraudTransactions,
+     totalFraudAmount,
+     transactionTypes,
+     transactions,
+     collect(DISTINCT origin.accountId)[0..10] AS sourceAccounts
+RETURN dest.accountId AS destinationAccount,
+       fraudTransactions,
+       round(totalFraudAmount, 2) AS totalFraudAmount,
+       transactionTypes,
+       sourceAccounts,
+       transactions,
+       CASE
+         WHEN fraudTransactions >= 2 THEN 'Suspicious repeated destination: this account received multiple fraudulent transactions from different source accounts in the synthetic graph.'
+         ELSE 'Fraud-linked destination: this account received at least one fraudulent transaction in the synthetic graph.'
+       END AS investigationSummary
+""",
+        example_questions=(
+            "Create a fraud investigation brief for destination account C668046170.",
+            "Why is C668046170 suspicious?",
+            "Profile this repeated fraud destination account.",
+        ),
+        expected_output="Case-style destination account brief with fraud totals, sources, transaction details, and risk indicators.",
+    ),
+    QueryTemplate(
         name="fraud_type_comparison",
         description="Compare fraudulent TRANSFER and CASH_OUT activity patterns.",
         parameters={"limit": 10},

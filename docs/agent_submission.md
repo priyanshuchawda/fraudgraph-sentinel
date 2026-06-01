@@ -8,7 +8,7 @@ FraudGraph Sentinel
 
 FraudGraph Sentinel is a graph-backed cyber-fraud investigation assistant for a synthetic mobile-money dataset. It helps analysts reason over suspicious transaction paths, repeated fraudulent destinations, high-value fraud movements, fraud-type patterns, and account neighborhoods.
 
-It grounds answers in Neo4j graph results and explains why a pattern is suspicious without claiming real-world criminal activity.
+It grounds answers in Neo4j graph results and explains why a pattern is suspicious without claiming real-world criminal activity. The strongest demo is a two-step investigation: first the agent finds repeated fraudulent destination accounts, then it creates a case brief for one destination account with fraud count, total amount, source accounts, transaction types, and risk indicators.
 
 ## Dataset And Why A Graph Fits
 
@@ -38,6 +38,7 @@ Prepared Cypher Template tools:
 - `repeated_fraud_destinations`
 - `high_value_fraud_paths`
 - `account_fraud_neighborhood`
+- `destination_fraud_profile`
 - `fraud_type_comparison`
 - `fraud_concentration`
 - `risk_indicator_overview`
@@ -72,6 +73,7 @@ Validated queries:
 - repeated fraudulent destinations
 - high-value fraud paths
 - account fraud neighborhood
+- destination fraud profile
 - fraud type comparison
 - fraud concentration
 - risk indicator overview
@@ -93,6 +95,12 @@ https://github.com/priyanshuchawda/fraudgraph-sentinel
 
 ```text
 Which destination accounts received multiple fraudulent transfers?
+```
+
+Recommended second screenshot:
+
+```text
+Create a fraud investigation brief for destination account C668046170.
 ```
 
 Use `docs/hackathon-thread-reply.md` as the final copy-paste submission reply after screenshots are captured.

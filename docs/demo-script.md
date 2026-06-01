@@ -44,6 +44,20 @@ The agent should use the repeated_fraud_destinations Cypher Template and return 
 Ask:
 
 ```text
+Create a fraud investigation brief for destination account C668046170.
+```
+
+Expected response:
+
+```text
+The agent should turn the repeated-destination finding into a case brief with fraud count, total fraud amount, source accounts, transaction types, risk indicators, and a synthetic-data caveat.
+```
+
+## 5. Ask A Path Question
+
+Ask:
+
+```text
 Show the highest-value suspicious fraud paths.
 ```
 
@@ -53,7 +67,7 @@ Expected response:
 The agent should return source account, transaction, destination account, transaction type, amount, and risk summary.
 ```
 
-## 5. Ask A Comparison Question
+## 6. Ask A Comparison Question
 
 Ask:
 
@@ -67,7 +81,7 @@ Expected response:
 The agent should compare fraud counts, source accounts, destination accounts, total fraud amount, and average fraud amount by transaction type.
 ```
 
-## 6. Close
+## 7. Close
 
 Optional risk-layer question:
 

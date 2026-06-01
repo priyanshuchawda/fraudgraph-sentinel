@@ -75,6 +75,26 @@
     },
     {
       "type": "cypher_template",
+      "name": "destination_fraud_profile",
+      "description": "Build an investigation brief for one repeated fraud destination account, including source accounts, transaction types, amounts, and risk indicators.",
+      "parameters": [
+        {
+          "name": "accountId",
+          "data_type": "string",
+          "description": "accountId parameter for destination_fraud_profile",
+          "default_value": "C668046170"
+        },
+        {
+          "name": "limit",
+          "data_type": "integer",
+          "description": "limit parameter for destination_fraud_profile",
+          "default_value": 25
+        }
+      ],
+      "cypher": "MATCH (:Account)-[:SENT]->(tx:Transaction {isFraud: true})-[:TO]->(dest:Account {accountId: $accountId})\nMATCH (tx)-[:HAS_TYPE]->(kind:TransactionType)\nOPTIONAL MATCH (tx)-[:HAS_RISK_INDICATOR]->(indicator:RiskIndicator)\nWITH dest,\n     tx,\n     kind,\n     collect(DISTINCT indicator.name) AS riskIndicators\nORDER BY tx.amount DESC\nWITH dest,\n     collect({\n       transactionId: tx.transactionId,\n       transactionType: kind.name,\n       amount: round(tx.amount, 2),\n       flaggedByRule: tx.isFlaggedFraud,\n       riskSummary: tx.riskText,\n       riskIndicators: riskIndicators\n     })[0..$limit] AS transactions,\n     count(tx) AS fraudTransactions,\n     sum(tx.amount) AS totalFraudAmount,\n     collect(DISTINCT kind.name) AS transactionTypes\nMATCH (origin:Account)-[:SENT]->(fraudTx:Transaction {isFraud: true})-[:TO]->(dest)\nWITH dest,\n     fraudTransactions,\n     totalFraudAmount,\n     transactionTypes,\n     transactions,\n     collect(DISTINCT origin.accountId)[0..10] AS sourceAccounts\nRETURN dest.accountId AS destinationAccount,\n       fraudTransactions,\n       round(totalFraudAmount, 2) AS totalFraudAmount,\n       transactionTypes,\n       sourceAccounts,\n       transactions,\n       CASE\n         WHEN fraudTransactions >= 2 THEN 'Suspicious repeated destination: this account received multiple fraudulent transactions from different source accounts in the synthetic graph.'\n         ELSE 'Fraud-linked destination: this account received at least one fraudulent transaction in the synthetic graph.'\n       END AS investigationSummary"
+    },
+    {
+      "type": "cypher_template",
       "name": "fraud_type_comparison",
       "description": "Compare fraudulent TRANSFER and CASH_OUT activity patterns.",
       "parameters": [

@@ -76,6 +76,7 @@ If configuring manually, create these Cypher Template tools:
 - `repeated_fraud_destinations`
 - `high_value_fraud_paths`
 - `account_fraud_neighborhood`
+- `destination_fraud_profile`
 - `fraud_type_comparison`
 - `fraud_concentration`
 - `risk_indicator_overview`
@@ -98,7 +99,7 @@ The optional risk-indicator tools are safe to use after `outputs/fraudgraph_sent
 5. Prefer **Import agent** and use `outputs/fraudgraph_sentinel/aura_agent_import_config.json`.
 6. If importing is unavailable, create an Aura Agent named `FraudGraph Sentinel`.
 7. Paste the agent description and system instructions from this document.
-8. Add the eight Cypher Template tools from `agent_tools.json`.
+8. Add the nine Cypher Template tools from `agent_tools.json`.
 9. Add Text2Cypher using the graph schema context and read-only restrictions.
 10. Test the demo questions in `docs/demo-script.md`.
 11. Capture one graph screenshot and one agent-response screenshot for the hackathon reply.
