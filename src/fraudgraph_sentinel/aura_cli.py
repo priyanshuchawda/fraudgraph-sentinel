@@ -60,6 +60,17 @@ def print_env_status(env_file: Path) -> int:
     )
 
 
+def safe_aura_error_message(error: Exception) -> str:
+    error_text = str(error).lower()
+    if "cannot resolve address" in error_text:
+        return "database appears paused, deleted, or unreachable"
+    if "authentication" in error_text or "unauthorized" in error_text:
+        return "authentication failed; check NEO4J_USERNAME and NEO4J_PASSWORD"
+    if "database" in error_text and "not found" in error_text:
+        return "database name was not found; check NEO4J_DATABASE or instance status"
+    return f"{error.__class__.__name__}; check AuraDB instance status and local configuration"
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "env-check":
@@ -103,6 +114,9 @@ def main(argv: list[str] | None = None) -> int:
                 json.dumps(run_core_query_checks(driver, config), indent=2, default=str)
             )
             return 0
+    except Exception as error:
+        print(f"AuraDB connectivity: FAIL | {safe_aura_error_message(error)}")
+        return 2
     finally:
         driver.close()
     return 2
